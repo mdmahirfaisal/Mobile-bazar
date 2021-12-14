@@ -1,56 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import AddProduct from './Pages/Dashboard/AddProduct/AddProduct';
+import AddReview from './Pages/Dashboard/AddReview/AddReview';
+import DashboardHome from './Pages/Dashboard/Dashboard/DashboardHome';
+import ManageProduct from './Pages/Dashboard/ManageProduct/ManageProduct';
+import UserProfile from './Pages/Dashboard/UserProfile/UserProfile';
+import Home from './Pages/Home/Home/Home';
+import Login from './Pages/Login/Login/Login';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <BrowserRouter>
+        <Routes>
+
+          <Route path="/home" element={<Home />} />
+
+          <Route path="/dashboard" element={<DashboardHome />}>
+            <Route path="/dashboard/userProfile" element={<UserProfile />} />
+            <Route path={`/dashboard/addProduct`} element={<AddProduct></AddProduct>} />
+
+            <Route path={`/dashboard/manageProduct`} element={<ManageProduct></ManageProduct>} />
+
+            <Route path={`/dashboard/addReview`} element={<AddReview></AddReview>} />
+
+            <Route exact path="/dashboard" element={<UserProfile />} />
+          </Route>
+
+          <Route path="/login" element={<Login />} />
+
+          <Route exact path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
