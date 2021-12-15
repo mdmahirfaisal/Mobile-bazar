@@ -27,7 +27,7 @@ const Navigation = () => {
                 expand="lg"
                 variant="light"
                 fixed="top"
-                className={(isSticky || isCollapsed) ? "shadow-sm bg-white py-2" : "py-4"}>
+                className={(isSticky || isCollapsed) ? "shadow-sm bg-light py-2" : "py-4"}>
                 <Container>
 
                     <Navbar.Brand

@@ -1,5 +1,5 @@
 .banner-section{
-    background:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('https://i.ibb.co/C1X8SbX/mobile-1.png');
+    background:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('https://i.ibb.co/nznjq4g/Banner-phone.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -7,14 +7,26 @@
   background-attachment: fixed;
 }
 .banner-text{
-  background-color: rgba(227, 255, 249, 0.2);
+  background-color: rgba(191, 191, 191, 0.2);
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 20px;
+}
+.banner-text h5{
+font-size: 30px;
+}
+.banner-text h1{
+  font-size: 55px;
 }
 
 @media screen and (max-width: 600px) {
   .banner-section{
       height: 100%;
   }
+  .banner-text h5{
+    font-size: 20px;
+    }
+    .banner-text h1{
+      font-size: 35px;
+    }
 }
