@@ -7,7 +7,7 @@ const Home = () => {
     return (
         <>
             <Navigation></Navigation>
-            <div className="" style={{ height: '1000px' }}>
+            <div className="" style={{ height: '' }}>
                 <Banner></Banner>
                 <Footer></Footer>
             </div>
