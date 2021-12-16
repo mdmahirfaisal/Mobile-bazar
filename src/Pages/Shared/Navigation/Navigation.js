@@ -27,7 +27,7 @@ const Navigation = () => {
                 expand="lg"
                 variant="light"
                 fixed="top"
-                className={(isSticky || isCollapsed) ? "shadow-sm bg-light py-2" : "py-4"}>
+                className={(isSticky || isCollapsed) ? "shadow-sm nav-bg-color py-2" : "py-4"}>
                 <Container>
 
                     <Navbar.Brand
@@ -82,10 +82,14 @@ const Navigation = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-
-
-
-
+            {isSticky && <Navbar
+                collapseOnSelect
+                expand="lg"
+                variant="light"
+                fixed="bottom"
+            >
+                <Nav.Link className='up-arrow fs-5  rounded-pill text-decoration-none ms-auto me-4 mb-5' as={HashLink} to="/home#home"><i className="fas fa-arrow-up"></i></Nav.Link>
+            </Navbar>}
         </>
     );
 };

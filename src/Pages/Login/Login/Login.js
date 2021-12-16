@@ -74,8 +74,8 @@ const Login = () => {
             {/* second login form  */}
 
             {!isDesktop && <div className="second-form-body">
-                <div className="second-form">
-                    <div className="main">
+                <div className="second-form py-5">
+                    <div className="main ">
                         <input type="checkbox" id="chk" aria-hidden="true" />
                         <div className="signup">
                             <form>
