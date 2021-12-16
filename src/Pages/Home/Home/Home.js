@@ -3,6 +3,7 @@ import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Banner from '../Banner/Banner';
 import Contact from '../Contact/Contact';
+import HomeProduct from '../HomeProduct/HomeProduct';
 import MiniCard from '../MiniCard/MiniCard';
 import PhoneParts from '../PhoneParts/PhoneParts';
 import RaiseSection from '../RaiseSection/RaiseSection';
@@ -17,6 +18,7 @@ const Home = () => {
                 <MiniCard></MiniCard>
                 <PhoneParts></PhoneParts>
                 <RaiseSection></RaiseSection>
+                <HomeProduct></HomeProduct>
                 <Testimonials></Testimonials>
                 <Contact></Contact>
                 <Footer></Footer>

@@ -6,7 +6,7 @@ import ramImg from './image/ram-removebg-preview.png';
 
 const PhoneParts = () => {
     return (
-        <div className='phone-parts-container mt-5 bg-white'>
+        <div id='parts' className='phone-parts-container mt-5 bg-white'>
             <section className='phone-parts-section'>
                 <h2 className='fw-bold my-4'> WHAT MAKES THE ESSENTIAL DIFFERENT?</h2>
                 <p className='text-secondary'>EXPERIENCE HIGH PERFORMANCE AND SECURE</p>

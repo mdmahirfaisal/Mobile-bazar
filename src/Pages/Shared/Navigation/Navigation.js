@@ -48,19 +48,29 @@ const Navigation = () => {
 
                     <Navbar.Collapse id="responsive-navbar-nav" className={isCollapsed}>
                         <Nav className="ml-auto">
-                            <Nav.Link as={HashLink} to="/" className="mr-md-5" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
+                            <Nav.Link as={HashLink} to="/home#home" className="mr-md-5" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
                             <Nav.Link as={HashLink}
-                                to="/home#"
+                                to="/home#parts"
                                 className="mr-md-5" active>
-                                Services
+                                Parts
                             </Nav.Link>
                             <Nav.Link as={HashLink}
-                                to="/home#"
+                                to="/home#raise"
+                                className="mr-md-5" active>
+                                Raise
+                            </Nav.Link>
+                            <Nav.Link as={HashLink}
+                                to="/home#products"
+                                className="mr-md-5" active>
+                                Products
+                            </Nav.Link>
+                            <Nav.Link as={HashLink}
+                                to="/home#testimonial"
                                 className="mr-md-5" active>
                                 Reviews
                             </Nav.Link>
                             <Nav.Link as={HashLink}
-                                to="/home#"
+                                to="/home#contact"
                                 className="mr-md-5" active>
                                 Contact Us
                             </Nav.Link>

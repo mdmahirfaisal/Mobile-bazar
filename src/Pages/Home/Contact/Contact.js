@@ -29,13 +29,15 @@ const Contact = () => {
                             </div>
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group mt-2">
                             <div className="col-sm-12">
                                 <input type="email" className="form-control" id="email" placeholder="EMAIL" {...register("email")} required />
                             </div>
                         </div>
 
-                        <textarea className="form-control" rows="10" placeholder="MESSAGE" {...register("message")} required></textarea>
+                        <div className="form-group">
+                            <textarea className="form-control mt-2" rows="10" placeholder="MESSAGE" {...register("message")} required></textarea>
+                        </div>
 
                         <button className="btn btn-primary send-button" id="submit" type="submit" value="SEND">
                             <div className="alt-send-button">
@@ -51,11 +53,11 @@ const Contact = () => {
                     <div className="direct-contact-container">
 
                         <ul className="contact-list text-start">
-                            <li className="list-item"><i className="fa fa-map-marker fa-2x"><span className="contact-text place">Rajshahi, Bangladesh</span></i></li>
+                            <li className="list-item"><i className="fa fa-map-marker text-danger fa-2x"><span className="contact-text place">Rajshahi, Bangladesh</span></i></li>
 
-                            <li className="list-item"><i className="fa fa-phone fa-2x"><span className="contact-text phone"><a href="tel:1-212-555-5555" title="Give me a call">+880 01928646555</a></span></i></li>
+                            <li className="list-item"><i className="fa fa-phone text-danger fa-2x"><span className="contact-text phone">+880 01928646555</span></i></li>
 
-                            <li className="list-item"><i className="fa fa-envelope fa-2x"><span className="contact-text gmail"><a href="mailto:#" title="Send me an email">rjmahir.faisal@gmail.com</a></span></i></li>
+                            <li className="list-item"><i className="fa fa-envelope text-danger fa-2x"><a href="mailto:#" title="Send me an email" className='text-decoration-none'><span className="contact-text gmail">rjmahir.faisal@gmail.com</span></a></i></li>
 
                         </ul>
 

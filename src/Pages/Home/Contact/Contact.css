@@ -105,14 +105,14 @@
     margin-left: 53px;
   }
   
-  .contact-text a {
-    color: #bbb;
+  .contact-text {
+    color: rgb(218, 208, 208);
     text-decoration: none;
-    transition-duration: 0.2s;
+    transition-duration: 0.4s;
   }
   
-  .contact-text a:hover {
-    color: #fff;
+  .contact-text:hover {
+    color: rgb(202, 23, 23);
     text-decoration: none;
   }
   

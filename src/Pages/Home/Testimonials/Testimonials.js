@@ -68,7 +68,7 @@ const customerReview = [
 const Testimonials = () => {
     SwiperCore.use([EffectCoverflow, Autoplay, Navigation, Pagination]);
     return (
-        <div id="review" className="py-5 bg-light reviews-section">
+        <div id="testimonial" className="py-5 bg-light reviews-section">
             <div style={{ width: '98%', margin: '0 auto' }}>
                 <Fade bottom duration={3000} distance="50px">
                     <h2 className="pb-5 fw-bold">CUSTOMER REVIEWS</h2>

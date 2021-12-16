@@ -3,7 +3,7 @@ import './RaiseSection.css';
 
 const RaiseSection = () => {
     return (
-        <div className='mt-5 pb-5 bg-light'>
+        <div id='raise' className='mt-5 pb-5 bg-light'>
             <div className="container">
                 <h2 className='pt-5'>RAISE YOUR EXPECTATIONS</h2>
                 <h6 className='text-secondary mb-5 pb-4'>REFINED VIEWING EXPERIENCE</h6>

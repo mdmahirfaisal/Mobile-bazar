@@ -16,6 +16,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ListItem from '@mui/material/ListItem';
 import CloseIcon from '@mui/icons-material/Close';
+import { Nav, Navbar } from 'react-bootstrap';
+import { HashLink } from 'react-router-hash-link';
 
 const drawerWidth = 210;
 
@@ -110,25 +112,41 @@ const DashboardHome = () => {
             >
 
                 <List className="border-0 text-dark bg-light shadow-sm" style={{ height: '100vh', paddingTop: '65px' }}>
-
                     <ListItem button>
-                        <Link to="/dashboard/userProfile">Profile</Link>
-
+                        <Link to="/dashboard/userProfile" className='text-decoration-none text-dark fw-bold'>PROFILE</Link>
                     </ListItem>
 
                     <ListItem button>
-                        <Link to="/dashboard/addProduct">Add Product</Link>
+                        <Link to="/dashboard/addProduct" className='text-decoration-none text-dark fw-bold'>ADD PRODUCT</Link>
+                    </ListItem>
 
+                    <ListItem button>
+                        <Link to="/dashboard/addProduct" className='text-decoration-none text-dark fw-bold'>MY ORDERS</Link>
                     </ListItem>
                     <ListItem button>
-                        <Link to="/dashboard/manageProduct">Manage Product</Link>
 
+                        <Link to="/dashboard/addProduct" className='text-decoration-none text-dark fw-bold'>MANAGE ORDERS</Link>
+                    </ListItem>
+
+                    <ListItem button>
+                        <Link to="/dashboard/manageProduct" className='text-decoration-none text-dark fw-bold'>MANAGE PRODUCT</Link>
                     </ListItem>
                     <ListItem button>
-                        <Link to="/dashboard/addReview">Add Review</Link>
-
+                        <Link to="/dashboard/manageProduct" className='text-decoration-none text-dark fw-bold'>MAKE ADMIN</Link>
                     </ListItem>
 
+                    <ListItem button>
+                        <Link to="/dashboard/addReview" className='text-decoration-none text-dark fw-bold'>RATE US</Link>
+                    </ListItem>
+
+                    <Navbar
+                        collapseOnSelect
+                        expand="lg"
+                        variant="light"
+                        fixed="bottom"
+                    >
+                        <Nav.Link className='up-arrow fs-5  rounded-pill text-decoration-none ms-4 mb-5' as={HashLink} to="/home">GO TO HOME</Nav.Link>
+                    </Navbar>
                 </List>
 
             </Drawer>
