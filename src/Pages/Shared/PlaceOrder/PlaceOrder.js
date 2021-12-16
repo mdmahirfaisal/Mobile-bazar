@@ -23,8 +23,8 @@ const PlaceOrder = () => {
                                 <p className="sub">Office Chair</p>
                                 <p className="price">$210.00</p>
                             </div>
-                            <div className="image">
-                                <img src="https://images-na.ssl-images-amazon.com/images/I/613A7vcgJ4L._SL1500_.jpg" alt="" />
+                            <div className="place-image">
+                                <img src="https://i.ibb.co/JqxhFv4/sammy-williams-38-Un6-Oi5be-E-unsplash.png" alt="" />
                             </div>
                         </div>
                         <div className="half">

@@ -7,7 +7,7 @@ const sliceProducts = mobileProducts.slice(0, 6);
 const HomeProduct = () => {
     return (
         <div id='products' className='my-5'>
-            <h2 className='text-secondary fw-bold'>OUR PRODUCTS</h2>
+            <h2 className='text-secondary fw-bold mb-5'>OUR PRODUCTS</h2>
             <div className="container">
                 <div className="row">
                     {
@@ -20,7 +20,7 @@ const HomeProduct = () => {
                                     </div>
 
                                     <div className="product-container-lower">
-                                        <img src={product.image} alt="honda png" className="image" />
+                                        <img src={product.image} alt="honda png" style={{ maxHeight: '280px' }} className="image" />
                                         <ul className="features-list img-fluid">
                                             <li>{product.email} </li>
                                             <li>$ {product.price} </li>

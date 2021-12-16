@@ -82,11 +82,11 @@
   color: #252525;
   font-size: 26px;
 }
-.place-card .card__body .image {
+.place-card .card__body .place-image {
   padding-top: 15px;
   width: 100%;
 }
-.place-card .card__body .image img {
+.place-card .card__body .place-image img {
   display: block;
   max-width: 100%;
   height: auto;

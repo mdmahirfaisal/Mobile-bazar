@@ -2,6 +2,7 @@ import * as React from 'react';
 import Navigation from '../../Shared/Navigation/Navigation';
 import './Login.css';
 import useMediaQuery from "../../Shared/useMediaQuery/useMediaQuery";
+import Footer from '../../Shared/Footer/Footer';
 
 const Login = () => {
     const isDesktop = useMediaQuery('(min-width: 900px)');
@@ -98,6 +99,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>}
+            <Footer></Footer>
         </>
     );
 };

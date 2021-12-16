@@ -3,6 +3,7 @@ import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Banner from '../Banner/Banner';
 import Contact from '../Contact/Contact';
+import Details from '../Details/Details';
 import HomeProduct from '../HomeProduct/HomeProduct';
 import MiniCard from '../MiniCard/MiniCard';
 import PhoneParts from '../PhoneParts/PhoneParts';
@@ -19,6 +20,7 @@ const Home = () => {
                 <PhoneParts></PhoneParts>
                 <RaiseSection></RaiseSection>
                 <HomeProduct></HomeProduct>
+                <Details></Details>
                 <Testimonials></Testimonials>
                 <Contact></Contact>
                 <Footer></Footer>

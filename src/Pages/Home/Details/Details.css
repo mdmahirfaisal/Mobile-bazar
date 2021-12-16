@@ -1,0 +1,24 @@
+.details-body{
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://i.ibb.co/nznjq4g/Banner-phone.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  background-position: center;
+  background-attachment: fixed;
+}
+/* .accordion{
+    background-color: black;
+} */
+
+
+@media screen and (max-width: 800px) {
+    .details-body{
+        height: 100%;
+    }
+    /* .banner-text h5{
+      font-size: 20px;
+      }
+      .banner-text h1{
+        font-size: 35px;
+      } */
+  }

@@ -26,7 +26,7 @@ const Contact = () => {
                 <h1 className="section-header">Contact</h1>
 
                 <div className=" row">
-                    <form id="contact-form" onSubmit={handleSubmit(onSubmit)} className="col-sm-12 col-md-6">
+                    <form id="contact-form" onSubmit={handleSubmit(onSubmit)} className="col-sm-12 col-md-6 mb-4">
                         <Box sx={{ display: 'flex', alignItems: 'flex-end', backgroundColor: 'white', marginBottom: '10px', borderRadius: '10px', padding: '2px 5px' }}>
                             <AccountCircle className='mb-2' sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                             <TextField className="w-100 mb-2"
