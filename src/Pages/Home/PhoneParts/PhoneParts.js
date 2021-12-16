@@ -13,6 +13,7 @@ const PhoneParts = () => {
                 <div class="phone-container">
                     <div class="card">
                         <div class="content">
+                            <h5 className='text-secondary fw-bold'>CAMERA</h5>
                             <div class="imgBx">
                                 <img src={cameraImg} alt='Camera' />
                             </div>
@@ -26,6 +27,7 @@ const PhoneParts = () => {
                     </div>
                     <div class="card">
                         <div class="content">
+                            <h5 className='text-secondary fw-bold'>PROCESSOR</h5>
                             <div class="imgBx">
                                 <img src={procImg} alt='Processor' />
                             </div>
@@ -39,6 +41,7 @@ const PhoneParts = () => {
                     </div>
                     <div class="card">
                         <div class="content">
+                            <h5 className='text-secondary fw-bold'>RAM</h5>
                             <div class="imgBx">
                                 <img src={ramImg} alt='Ram' />
                             </div>

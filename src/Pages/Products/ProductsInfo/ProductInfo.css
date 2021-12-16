@@ -1,0 +1,124 @@
+
+  
+  .products-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .product-container {
+    box-shadow: 0px 2px 2px rgba(18, 18, 18, 0.2);
+  }
+  .product-container:hover .product-container-lower {
+    transform: translateY(25%);
+    background: #fff;
+  }
+  .product-container:hover .features-list {
+    opacity: 1;
+  }
+  .product-container:hover span {
+    transform: translateY(35px);
+  }
+  .product-container:hover .product-container-content h2 {
+    opacity: 0;
+  }
+  .product-container:hover .image {
+    width: 65%;
+  }
+  .product-container:hover .cta {
+    background: #fff;
+    color: #151414;
+  }
+  
+  .product-container-inner {
+    height: 500px;
+    background: linear-gradient(45deg, rgba(18, 18, 18, 0.62), rgba(18, 18, 18, 0.58)), url("https://i.ibb.co/R2sdvFj/mobile-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  
+  .product-container-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    min-height: 50%;
+    color: #fff;
+  }
+  .product-container-content h2 {
+    font-size: 2rem;
+    transition: all 0.5s ease;
+  }
+  .product-container-content span {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+  }
+  
+  .image {
+    width: 50%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    transition: all 0.5s ease;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-60%);
+  }
+  
+  .product-container-lower {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    background: transparent;
+    position: relative;
+    transform: translateY(60%);
+    transition: all 0.5s ease;
+    min-height: 40%;
+  }
+  
+  .features-list {
+    padding: 50px;
+    list-style-type: none;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+  .features-list li {
+    position: relative;
+    font-weight: 100;
+    line-height: 150%;
+    font-size: 1.1em;
+    text-align: left;
+  }
+  .features-list li:before {
+    position: absolute;
+    content: "";
+    width: 5px;
+    height: 10px;
+    border-top: 3px solid #424fc6;
+    border-left: 3px solid #424fc6;
+    left: -15px;
+    top: 5px;
+    transform: rotate(-130deg);
+  }
+  
+  .cta {
+    width: 100%;
+    border: none;
+    border-top: 1px solid #151414;
+    outline: none;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: 100;
+    background: #1c1a1a;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }

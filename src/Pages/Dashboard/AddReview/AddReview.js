@@ -86,6 +86,11 @@ const AddReview = () => {
 
     };
 
+
+    const uploadFile = () => {
+        document.getElementById('uploadImg').click();
+    }
+
     return (
         <div className="">
             <h2 className="fw-bold text-secondary ">ADD RATINGS </h2>
@@ -126,7 +131,11 @@ const AddReview = () => {
                             </div>
                             <div className="col-12 col-md-6">
                                 <h5 className="text-start ">Add your image</h5>
-                                <TextField className=""
+                                <Button type="submit" variant="outlined" onClick={uploadFile} className="mt-4  justify-self-start d-flex  send-button">Upload image</Button>
+
+
+                                <TextField id='uploadImg'
+                                    hidden
                                     label="Upload Image"
                                     type="file" accept="image/*" onChange={handleImgUpload} required
                                     variant="standard" />
@@ -143,8 +152,11 @@ const AddReview = () => {
                             className="col-12  bg-white" style={{ borderRadius: '5px' }} {...register("description", { required: true })}
                         />
                     </div>
-
-                    <Button type="submit" variant="contained" className="  rounded-pill">Send review</Button>
+                    <Button type="submit" variant="contained" className=" w-100  rounded-pill send-button">
+                        <div className="alt-send-button">
+                            <i className="fa fa-paper-plane"></i><span className="send-text">SEND REVIEW</span>
+                        </div>
+                    </Button>
                 </form>
             </div>
 

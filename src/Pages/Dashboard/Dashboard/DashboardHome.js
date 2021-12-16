@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import { Toolbar, Button } from '@mui/material/';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -94,7 +94,8 @@ const DashboardHome = () => {
                     <Typography variant="h6" noWrap component="div">
                         Mobile Bazar
                     </Typography>
-                    <Link to="/home" className="text-decoration-none ms-auto"><button className="btn btn-outline-info px-md-5 py-1 rounded-pill ms-auto me-md-5">Home</button></Link>
+                    <Link to="/home" className="text-decoration-none ms-auto"><Button variant='outlined' className=" px-md-5 py-1 rounded-pill ms-auto me-md-5">Home</Button></Link>
+
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -145,12 +146,12 @@ const DashboardHome = () => {
                         variant="light"
                         fixed="bottom"
                     >
-                        <Nav.Link className='up-arrow fs-5  rounded-pill text-decoration-none ms-4 mb-5' as={HashLink} to="/home">GO TO HOME</Nav.Link>
+                        <Nav.Link className='up-arrow fs-5  rounded-pill text-decoration-none ms-3 mb-4' as={HashLink} to="/home">BACK TO HOME</Nav.Link>
                     </Navbar>
                 </List>
 
             </Drawer>
-            <Main open={open} className="border-0" style={{ paddingTop: '65px' }}>
+            <Main open={open} className="border-0" style={{ paddingTop: '20px' }}>
                 <div className="home-background">
                     <Outlet />
                 </div>

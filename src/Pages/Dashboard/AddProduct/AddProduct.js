@@ -73,6 +73,10 @@ const AddProduct = () => {
 
     };
 
+    const uploadFile = () => {
+        document.getElementById('productImg').click();
+    }
+
     return (
         <div className="container ">
             <h2 className="fw-bold text-secondary ">PLEASE ADD A PRODUCT</h2>
@@ -95,7 +99,10 @@ const AddProduct = () => {
                         variant="standard" />
 
                     <Form.Label className="text-start  mt-3">Product image</Form.Label>
-                    <TextField className="col-12 col-md-10"
+                    <Button type="submit" variant="outlined" onClick={uploadFile} className=" w-25 justify-self-start d-flex   send-button">Upload image</Button>
+                    <TextField id='productImg'
+                        className="col-12 col-md-10"
+                        hidden
                         label="Upload Image"
                         type="file" accept="image/*" onChange={handleImgUpload} required
                         variant="standard" />

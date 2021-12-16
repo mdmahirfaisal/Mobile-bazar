@@ -8,6 +8,10 @@ import ManageProduct from './Pages/Dashboard/ManageProduct/ManageProduct';
 import UserProfile from './Pages/Dashboard/UserProfile/UserProfile';
 import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
+import Products from './Pages/Products/Products/Products';
+import PlaceOrder from './Pages/Shared/PlaceOrder/PlaceOrder';
+import Test from './Pages/Shared/PlaceOrder/CheckOut';
+import NotFound from './Pages/NotFound/NotFound';
 
 
 function App() {
@@ -17,6 +21,9 @@ function App() {
         <Routes>
 
           <Route path="/home" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/placeOrder" element={<PlaceOrder />} />
+          <Route path="/test" element={<Test></Test>} />
 
           <Route path="/dashboard" element={<DashboardHome />}>
             <Route path="/dashboard/userProfile" element={<UserProfile />} />
@@ -32,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
 
           <Route exact path="/" element={<Home />} />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

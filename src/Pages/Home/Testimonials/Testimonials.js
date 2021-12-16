@@ -63,7 +63,7 @@ const customerReview = [
         image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
         message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
     },
-]
+];
 
 const Testimonials = () => {
     SwiperCore.use([EffectCoverflow, Autoplay, Navigation, Pagination]);
