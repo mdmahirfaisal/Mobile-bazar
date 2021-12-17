@@ -5,9 +5,9 @@ import Paper from '@mui/material/Paper';
 
 const TestimonialInfo = ({ review }) => {
     const { name, image, message, email } = review;
-    console.log(name, message, email);
+    // console.log(name, message, email);
     return (
-        <Paper variant="outlined">
+        <Paper variant="">
             <div className="test-card h-100 border-0">
                 <div className="banner">
                     <img src={image} className='img-fluid' style={{ height: '100%', width: '50%', borderRadius: '100%' }} alt="" />
@@ -22,7 +22,7 @@ const TestimonialInfo = ({ review }) => {
                 </div>
 
 
-                <div className="desc">Morgan has collected ants since they were six years old and now has many dozen ants but none in their pants.</div>
+                <div className="desc">{message} </div>
             </div>
         </Paper>
     );

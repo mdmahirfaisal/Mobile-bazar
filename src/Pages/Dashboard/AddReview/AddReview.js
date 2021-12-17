@@ -105,8 +105,18 @@ const AddReview = () => {
 
                     <div className="col-12 mt-5">
                         <div className=" row mb-3">
+                            <div className="col-12 col-md-6">
+                                <h5 className="text-start ">Add your image</h5>
+                                <Button type="submit" variant="outlined" onClick={uploadFile} className="mt-4  justify-self-start d-flex  send-button">Upload image</Button>
+                                <TextField id='uploadImg'
+                                    hidden
+                                    label="Upload Image"
+                                    type="file" accept="image/*" onChange={handleImgUpload} required
+                                    variant="standard" />
+                            </div>
+
                             <div className=" col-12 col-md-6">
-                                <h5 className="text-start ">Rate us</h5>
+                                <h5 className="text-start ms-2">Rate us</h5>
                                 <Box
                                     className=" d-flex align-items-center"
 
@@ -129,17 +139,7 @@ const AddReview = () => {
                                     )}
                                 </Box>
                             </div>
-                            <div className="col-12 col-md-6">
-                                <h5 className="text-start ">Add your image</h5>
-                                <Button type="submit" variant="outlined" onClick={uploadFile} className="mt-4  justify-self-start d-flex  send-button">Upload image</Button>
 
-
-                                <TextField id='uploadImg'
-                                    hidden
-                                    label="Upload Image"
-                                    type="file" accept="image/*" onChange={handleImgUpload} required
-                                    variant="standard" />
-                            </div>
                         </div>
                     </div>
                     <Form.Label className="text-start  mt-4">Description</Form.Label>

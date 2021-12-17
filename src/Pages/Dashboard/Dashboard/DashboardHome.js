@@ -1,9 +1,6 @@
 
 import * as React from 'react';
-import {
-    Link,
-    Outlet
-} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -94,7 +91,7 @@ const DashboardHome = () => {
                     <Typography variant="h6" noWrap component="div">
                         Mobile Bazar
                     </Typography>
-                    <Link to="/home" className="text-decoration-none ms-auto"><Button variant='outlined' className=" px-md-5 py-1 rounded-pill ms-auto me-md-5">Home</Button></Link>
+                    <HashLink to="/home" className="text-decoration-none ms-auto"><Button variant='outlined' className=" px-md-5 py-1 rounded-pill ms-auto me-md-5">Home</Button></HashLink>
 
                 </Toolbar>
             </AppBar>
@@ -114,30 +111,33 @@ const DashboardHome = () => {
 
                 <List className="border-0 text-dark bg-light shadow-sm" style={{ height: '100vh', paddingTop: '65px' }}>
                     <ListItem button>
-                        <Link to="/dashboard/userProfile" className='text-decoration-none text-dark fw-bold'>PROFILE</Link>
+                        <HashLink to="/dashboard/userProfile" className='text-decoration-none w-100 text-dark fw-bold'>PROFILE</HashLink>
                     </ListItem>
 
                     <ListItem button>
-                        <Link to="/dashboard/addProduct" className='text-decoration-none text-dark fw-bold'>ADD PRODUCT</Link>
+                        <HashLink to="/dashboard/addProduct" className='text-decoration-none w-100 text-dark fw-bold'>ADD PRODUCT</HashLink>
                     </ListItem>
 
                     <ListItem button>
-                        <Link to="/dashboard/addProduct" className='text-decoration-none text-dark fw-bold'>MY ORDERS</Link>
-                    </ListItem>
-                    <ListItem button>
-
-                        <Link to="/dashboard/addProduct" className='text-decoration-none text-dark fw-bold'>MANAGE ORDERS</Link>
+                        <HashLink to="/dashboard/myOrders" className='text-decoration-none w-100 text-dark fw-bold'>MY ORDERS</HashLink>
                     </ListItem>
 
                     <ListItem button>
-                        <Link to="/dashboard/manageProduct" className='text-decoration-none text-dark fw-bold'>MANAGE PRODUCT</Link>
-                    </ListItem>
-                    <ListItem button>
-                        <Link to="/dashboard/manageProduct" className='text-decoration-none text-dark fw-bold'>MAKE ADMIN</Link>
+                        <HashLink to="/dashboard/manageProduct" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE PRODUCT</HashLink>
                     </ListItem>
 
                     <ListItem button>
-                        <Link to="/dashboard/addReview" className='text-decoration-none text-dark fw-bold'>RATE US</Link>
+
+                        <HashLink to="/dashboard/manageOrders" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE ORDERS</HashLink>
+                    </ListItem>
+
+                    {/*                     
+                    <ListItem button>
+                        <HashLink to="/dashboard/manageProduct" className='text-decoration-none w-100 text-dark fw-bold'>MAKE ADMIN</HashLink>
+                    </ListItem> */}
+
+                    <ListItem button>
+                        <HashLink to="/dashboard/addReview" className='text-decoration-none w-100 text-dark fw-bold'>RATE US</HashLink>
                     </ListItem>
 
                     <Navbar

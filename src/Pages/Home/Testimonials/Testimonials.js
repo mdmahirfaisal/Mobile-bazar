@@ -68,7 +68,7 @@ const customerReview = [
 const Testimonials = () => {
     SwiperCore.use([EffectCoverflow, Autoplay, Navigation, Pagination]);
     return (
-        <div id="testimonial" className="py-5 bg-light reviews-section">
+        <div id="testimonial" className="  bg-light reviews-section" style={{ padding: '90px 0' }}>
             <div style={{ width: '98%', margin: '0 auto' }}>
                 <Fade bottom duration={3000} distance="50px">
                     <h2 className="pb-5 fw-bold">CUSTOMER REVIEWS</h2>
@@ -110,7 +110,7 @@ const Testimonials = () => {
 
                         {customerReview.map((review) => {
                             return (
-                                <SwiperSlide className="swiper-slide"
+                                <SwiperSlide className="swiper-slide mb-5"
                                     key={review.id}>
                                     <TestimonialInfo review={review}></TestimonialInfo>
                                 </SwiperSlide>

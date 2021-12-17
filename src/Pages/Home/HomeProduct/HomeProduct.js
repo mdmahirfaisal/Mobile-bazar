@@ -15,12 +15,12 @@ const HomeProduct = () => {
                             <div className="product-container h-100 ">
                                 <div className="product-container-inner">
                                     <div className="product-container-content">
-                                        <span>2020 Passport</span>
-                                        <h2>{product.name} </h2>
+                                        <span style={{ maxHeight: '', marginTop: '-80px' }}>2020 Passport</span>
+                                        <h2 style={{ marginTop: '-80px' }}>{product.name} </h2>
                                     </div>
 
                                     <div className="product-container-lower">
-                                        <img src={product.image} alt="honda png" style={{ maxHeight: '280px' }} className="image" />
+                                        <img src={product.image} alt="honda png" style={{ maxHeight: '', marginTop: '-120px' }} className="image" />
                                         <ul className="features-list img-fluid">
                                             <li>{product.email} </li>
                                             <li>$ {product.price} </li>

@@ -38,7 +38,7 @@ const Contact = () => {
                             <Email className='mb-2' sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                             <TextField className="w-100 mb-2"
                                 {...register("email")} required
-                                label="NAME" variant="standard" />
+                                label="EMAIL" variant="standard" />
                         </Box>
 
                         <TextareaAutosize

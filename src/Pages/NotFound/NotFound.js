@@ -22,7 +22,7 @@ const NotFound = () => {
                         <Nav.Link as={HashLink}
                             to="/home#home"
                             className='login-button text-center mx-auto mb-3'>
-                            Login
+                            Back to home
                         </Nav.Link>
                     </div>
                 </div>

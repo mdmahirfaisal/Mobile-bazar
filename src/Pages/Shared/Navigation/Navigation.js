@@ -65,6 +65,11 @@ const Navigation = () => {
                                 Products
                             </Nav.Link>
                             <Nav.Link as={HashLink}
+                                to="/home#details"
+                                className="mr-md-5" active>
+                                Info
+                            </Nav.Link>
+                            <Nav.Link as={HashLink}
                                 to="/home#testimonial"
                                 className="mr-md-5" active>
                                 Reviews
