@@ -6,77 +6,85 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-// import Swal from 'sweetalert2'
-import { mobileProducts } from '../../Products/Products/Products';
+import Swal from 'sweetalert2'
 
 
 const tableStyle = {
     borderRight: '1px solid gray'
 }
 const MyOrders = () => {
-    // const [bookings, setBookings] = React.useState([]);
-    // console.log(bookings);
+    const [bookings, setBookings] = React.useState([]);
+    console.log(bookings);
 
     React.useEffect(() => {
-        // const url = `https://lit-citadel-97865.herokuapp.com/ordersData?email=${user.email}`;
-        // fetch(url)
-        //     .then(res => res.json())
-        //     .then(data => setBookings(data))
-        //     .catch(error => console.log(error))
+        // const url = `https://mysterious-waters-68327.herokuapp.com/ordersData?email=${user.email}`;
+        const url = `https://mysterious-waters-68327.herokuapp.com/ordersData`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => setBookings(data))
+            .catch(error => {
+                Swal.fire({
+                    position: 'top-middle',
+                    icon: 'error',
+                    title: ` ${error}`,
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            })
 
     }, []);
 
 
     // handle delete 
     const handleDeleteOrder = (id) => {
-        // const swalWithBootstrapButtons = Swal.mixin({
-        //     customClass: {
-        //         confirmButton: 'btn btn-success ms-2',
-        //         cancelButton: 'btn btn-danger'
-        //     },
-        //     buttonsStyling: false
-        // })
-        // swalWithBootstrapButtons.fire({
-        //     title: 'Are you sure?',
-        //     text: "You won't be able to delete this item!",
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Yes, delete it!',
-        //     cancelButtonText: 'No, cancel!',
-        //     reverseButtons: true
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         const url = `https://lit-citadel-97865.herokuapp.com/orders/${id}`;
-        //         fetch(url, {
-        //             method: 'DELETE'
-        //         })
-        //             .then(res => res.json())
-        //             .then(data => {
-        //                 if (data.deletedCount > 0) {
-        //                     const available = bookings.filter(user => user._id !== id);
-        //                     setBookings(available);
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success ms-2',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to delete this item!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `https://mysterious-waters-68327.herokuapp.com/orders/${id}`;
+                fetch(url, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const available = bookings.filter(user => user._id !== id);
+                            setBookings(available);
 
-        //                     swalWithBootstrapButtons.fire(
-        //                         'Deleted!',
-        //                         'Your file has been deleted.',
-        //                         'success'
-        //                     )
-        //                 }
-        //             })
+                            swalWithBootstrapButtons.fire(
+                                'Deleted!',
+                                'This item has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
 
-        //     } else if (
-        //         result.dismiss === Swal.DismissReason.cancel
-        //     ) {
-        //         swalWithBootstrapButtons.fire(
-        //             'Cancelled',
-        //             'Your imaginary file is safe :)',
-        //             'error'
-        //         )
-        //     }
-        // })
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
     };
     return (
-        <div style={{ backgroundColor: '#', padding: '' }} >
+        <div style={{ backgroundColor: '', padding: '' }} >
             <h1 className="fw-bold text-secondary py-3">MY ORDERS</h1>
             <Paper elevation={5} sx={{ width: '100%', overflow: '' }}>
                 <TableContainer sx={{ backgroundColor: '#fff', borderRadius: '20px' }}>
@@ -91,7 +99,7 @@ const MyOrders = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {mobileProducts.map((row) => (
+                            {bookings.map((row) => (
                                 <TableRow
                                     key={row.id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat:300,400,700,800|Open+Sans:300");
-.place-order-body {
+/* .place-order-body {
   background-image: linear-gradient(to right bottom, #b91eda, #a02ae0, #8234e5, #5d3be8, #1241eb);
   height: 100%;
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
+} */
 
 .place-section {
   max-width: 720px;
@@ -20,7 +20,7 @@
 .place-card .card__title {
   display: flex;
   align-items: center;
-  padding: 30px 40px;
+  padding: 15px 20px;
 }
 .place-card .card__title h3 {
   flex: 0 1 200px;
@@ -29,7 +29,7 @@
   color: #252525;
   font-family: sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 28px;
   text-transform: uppercase;
 }
 .place-card .card__title .icon {
@@ -46,10 +46,10 @@
   background: #252525;
 }
 .place-card .card__body {
-  padding: 0 40px;
+  padding: 0 20px;
   display: flex;
   flex-flow: row no-wrap;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 .place-card .card__body > .half {
   box-sizing: border-box;
@@ -59,10 +59,10 @@
 .place-card .card__body .featured_text h1 {
   margin: 0;
   padding: 0;
-  font-weight: 800;
+  font-weight: 600;
   font-family: "Montserrat", sans-serif;
-  font-size: 64px;
-  line-height: 50px;
+  font-size: 40px;
+  line-height: 40px;
   color: #181e28;
 }
 .place-card .card__body .featured_text p {
@@ -71,7 +71,7 @@
 }
 .place-card .card__body .featured_text p.sub {
   font-family: "Montserrat", sans-serif;
-  font-size: 26px;
+  font-size: 20px;
   text-transform: uppercase;
   color: #686e77;
   font-weight: 300;
@@ -80,10 +80,10 @@
 .place-card .card__body .featured_text p.price {
   font-family: "Fjalla One", sans-serif;
   color: #252525;
-  font-size: 26px;
+  font-size: 24px;
 }
 .place-card .card__body .place-image {
-  padding-top: 15px;
+  padding-top: 10px;
   width: 100%;
 }
 .place-card .card__body .place-image img {
@@ -92,13 +92,13 @@
   height: auto;
 }
 .place-card .card__body .description {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 .place-card .card__body .description p {
   margin: 0;
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
-  line-height: 27px;
+  line-height: 22px;
   font-size: 16px;
   color: #555;
 }
@@ -124,13 +124,13 @@
   margin-left: 5px;
   color: #555;
 }
-.place-card .card__footer {
+/* .place-card .card__footer {
   padding: 30px 40px;
   display: flex;
   flex-flow: row no-wrap;
   align-items: center;
   position: relative;
-}
+} */
 .place-card .card__footer::before {
   content: "";
   position: absolute;

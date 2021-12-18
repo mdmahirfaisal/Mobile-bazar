@@ -4,66 +4,65 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
-// import axios from 'axios';
-import { mobileProducts } from '../../Products/Products/Products';
+import axios from 'axios';
 
 const tableStyle = {
     borderRight: '1px solid gray'
 }
 
 const ManageOrders = () => {
-    // const [allOrders, setAllOrders] = React.useState([]);
+    const [allOrders, setAllOrders] = React.useState([]);
 
     React.useEffect(() => {
-        // fetch('https://lit-citadel-97865.herokuapp.com/orders')
-        //     .then(res => res.json())
-        //     .then(data => setAllOrders(data))
-        //     .catch(error => {
-        //         Swal.fire({
-        //             position: 'top-middle',
-        //             icon: 'error',
-        //             title: `Set to ${error}`,
-        //             showConfirmButton: false,
-        //             timer: 3000
-        //         })
-        //     })
+        fetch('https://mysterious-waters-68327.herokuapp.com/orders')
+            .then(res => res.json())
+            .then(data => setAllOrders(data))
+            .catch(error => {
+                Swal.fire({
+                    position: 'top-middle',
+                    icon: 'error',
+                    title: ` ${error}`,
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+            })
     }, []);
 
 
     const handleStatusChange = (id, status) => {
-        // let modifiedOrders = [];
-        // allOrders.forEach(order => {
-        //     if (order._id === id) {
-        //         order.status = status;
-        //     }
-        //     modifiedOrders.push(order)
-        // })
-        // setAllOrders(modifiedOrders);
+        let modifiedOrders = [];
+        allOrders.forEach(order => {
+            if (order._id === id) {
+                order.status = status;
+            }
+            modifiedOrders.push(order)
+        })
+        setAllOrders(modifiedOrders);
 
-        // const modifiedStatus = { id, status }
+        const modifiedStatus = { id, status }
 
-        // axios.put('http://localhost:5000/updateOrderStatus', modifiedStatus)
-        //     .then(res => res.data && Swal.fire({
-        //         position: 'top-middle',
-        //         icon: 'success',
-        //         title: `Set to ${status}`,
-        //         showConfirmButton: false,
-        //         timer: 3000
-        //     }))
-        //     .catch(error => Swal.fire({
-        //         position: 'top-middle',
-        //         icon: 'error',
-        //         title: `Set to ${error}`,
-        //         showConfirmButton: false,
-        //         timer: 3000
-        //     }));
+        axios.put('https://mysterious-waters-68327.herokuapp.com/updateOrderStatus', modifiedStatus)
+            .then(res => res.data && Swal.fire({
+                position: 'top-middle',
+                icon: 'success',
+                title: `Set to ${status}`,
+                showConfirmButton: false,
+                timer: 3000
+            }))
+            .catch(error => Swal.fire({
+                position: 'top-middle',
+                icon: 'error',
+                title: `Set to ${error}`,
+                showConfirmButton: false,
+                timer: 3000
+            }));
     }
 
 
@@ -71,7 +70,7 @@ const ManageOrders = () => {
         <div>
             <div className="container">
                 <h1 className="fw-bold text-secondary">MANAGE ORDERS</h1>
-                <Paper elevation={5} sx={{ width: '100%', overflow: 'hidden', }}>
+                <Paper elevation={5} sx={{ width: '100%', overflow: '' }}>
                     <TableContainer sx={{ backgroundColor: '', borderRadius: '20px' }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
@@ -84,12 +83,12 @@ const ManageOrders = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {mobileProducts.map((row) => (
+                                {allOrders.map((row) => (
                                     <TableRow
-                                        key={row.id}
+                                        key={row._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell style={tableStyle} align="left"><img src={row?.image} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
+                                        <TableCell style={tableStyle} align="left"><img src={row?.img} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
                                         <TableCell className=" fs-6" style={tableStyle} component="th" scope="row">
                                             {row?.email}
                                         </TableCell>
@@ -102,13 +101,13 @@ const ManageOrders = () => {
                                                     status
                                                 </InputLabel>
                                                 <NativeSelect
-                                                    // className={row.status === "Pending" ? "btn btn-danger" : row.status === "Done" ? "btn btn-success" : "btn btn-info"}
-                                                    // defaultValue={row.status}
+                                                    className={row.status === "pending" ? "btn btn-danger" : row.status === "on going" ? "btn btn-info" : row.status === "approve" ? "btn btn-success" : "btn btn-danger"}
+                                                    defaultValue={row.status}
                                                     onChange={e => handleStatusChange(row.id, e.target.value)}
                                                 >
-                                                    <option className="bg-white text-muted">Pending</option>
-                                                    <option className="bg-white text-muted">On going</option>
-                                                    <option className="bg-white text-muted">Done</option>
+                                                    <option className="bg-white text-muted">pending</option>
+                                                    <option className="bg-white text-muted">on going</option>
+                                                    <option className="bg-white text-muted">approve</option>
 
 
                                                 </NativeSelect>

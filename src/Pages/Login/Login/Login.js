@@ -3,9 +3,56 @@ import Navigation from '../../Shared/Navigation/Navigation';
 import './Login.css';
 import useMediaQuery from "../../Shared/useMediaQuery/useMediaQuery";
 import Footer from '../../Shared/Footer/Footer';
+import { useForm } from "react-hook-form";
+// import { useLocation, useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+// import useFirebase from '../../../hooks/useFirebase';
+
 
 const Login = () => {
+    const { register, handleSubmit, reset } = useForm();
+    // const location = useLocation();
+    // const navigate = useNavigate();
+
     const isDesktop = useMediaQuery('(min-width: 900px)');
+    // const { loading, signInWithGoogle, registerUser, loginUser, logOut, setLoading, setAuthError } = useFirebase();
+
+    //// Login with google 
+    const handleGoogleLogin = () => {
+
+        // signInWithGoogle(location, navigate);
+    };
+
+    //// handle register
+    const handleRegisterSubmit = (data) => {
+        reset()
+        console.log(data)
+        // loginUser(data.email, data.password, data.name, navigate)
+    }
+    const handleRegisterSubmit2 = (data) => {
+        console.log(data)
+        // loginUser(data.email, data.password, data.name, navigate)
+        reset()
+    }
+
+
+    //// handle login
+    const handleLoginSubmit = (data) => {
+        console.log(data)
+        // loginUser(data.email, data.password, location, navigate)
+        reset()
+    };
+    //// handle login
+    const handleLoginSubmit2 = (data) => {
+        console.log(data)
+        // loginUser(data.email, data.password, location, navigate)
+        reset()
+    };
+
+
+    // const admin = 'admin@gmail.com';
+    // const password = 123456;
+
 
 
 
@@ -22,17 +69,20 @@ const Login = () => {
                     <div className="cont bg-light shadow " style={{ borderRadius: '20px' }}>
                         <div className="form sign-in">
                             <h2>Welcome back,</h2>
-                            <label>
-                                <span>Email</span>
-                                <input type="email" />
-                            </label>
-                            <label>
-                                <span>Password</span>
-                                <input type="password" />
-                            </label>
-                            <p className="forgot-pass">Forgot password?</p>
-                            <button type="button" className="submit">Sign In</button>
-                            <button type="button" className="fb-btn mt-2"> <span className='text-dark'>Connect with</span> <span>Google</span></button>
+                            <form onSubmit={handleSubmit(handleLoginSubmit)} className='mb-3'>
+                                <label>
+                                    <span>Email</span>
+                                    <input type="email" {...register("email")} required />
+                                </label>
+                                <label>
+                                    <span>Password</span>
+                                    <input className='mb-3' type="password" {...register("password")} required />
+                                </label>
+                                {/* <p className="forgot-pass mb-3">Forgot password?</p> */}
+                                <Button type="submit" sx={{ width: '75%', m: 1, mt: 2 }} variant="contained">Login</Button>
+                                {/* <button type="button" className="submit">Sign In</button> */}
+                            </form>
+                            <Button onClick={handleGoogleLogin} sx={{ width: '75%', m: 1, mt: 2 }} className="fb-btn " variant="outlined"> <span className='text-dark '>Connect with</span> <span>Google</span></Button>
                         </div>
                         <div className="sub-cont">
                             <div className="img">
@@ -51,20 +101,22 @@ const Login = () => {
                             </div>
                             <div className="form sign-up">
                                 <h2>Time to feel like home,</h2>
-                                <label>
-                                    <span>Name</span>
-                                    <input type="text" />
-                                </label>
-                                <label>
-                                    <span>Email</span>
-                                    <input type="email" />
-                                </label>
-                                <label>
-                                    <span>Password</span>
-                                    <input type="password" />
-                                </label>
-                                <button type="button" className="submit mt-2">Sign Up</button>
-                                <button type="button" className="fb-btn mt-2"><span className='text-dark'>Join with</span> <span>Google</span></button>
+                                <form onSubmit={handleSubmit(handleRegisterSubmit)} className='mb-3'>
+                                    <label>
+                                        <span>Name</span>
+                                        <input type="text" {...register("name")} required />
+                                    </label>
+                                    <label>
+                                        <span>Email</span>
+                                        <input type="email" {...register("email")} required />
+                                    </label>
+                                    <label>
+                                        <span>Password</span>
+                                        <input className='mb-3' type="password" {...register("password")} required />
+                                    </label>
+                                    <Button type="submit" sx={{ width: '75%', m: 1, mt: 2 }} variant="contained">Login</Button>
+                                </form>
+                                <Button onClick={handleGoogleLogin} sx={{ width: '75%', m: 1, mt: 2 }} className="fb-btn " variant="outlined"> <span className='text-dark '>Connect with</span> <span>Google</span></Button>
                             </div>
                         </div>
                     </div>
@@ -79,21 +131,21 @@ const Login = () => {
                     <div className="main ">
                         <input type="checkbox" id="chk" aria-hidden="true" />
                         <div className="signup">
-                            <form>
+                            <form onSubmit={handleSubmit(handleRegisterSubmit2)}>
                                 <label for="chk" aria-hidden="true">Sign up</label>
-                                <input type="text" name="txt" placeholder="User name" required="" />
-                                <input type="email" name="email" placeholder="Email" required="" />
-                                <input type="password" name="pswd" placeholder="Password" required="" />
-                                <button>Sign up</button>
+                                <input type="text" {...register("name")} placeholder="User name" required />
+                                <input type="email" {...register("email")} placeholder="Email" required />
+                                <input type="password" {...register("password")} placeholder="Password" required />
+                                <button type='submit'>Sign up</button>
                             </form>
                         </div>
 
                         <div className="login">
-                            <form>
+                            <form onSubmit={handleSubmit(handleLoginSubmit2)}>
                                 <label for="chk" aria-hidden="true">Login</label>
-                                <input type="email" name="email" placeholder="Email" required="" />
-                                <input type="password" name="pswd" placeholder="Password" required="" />
-                                <button>Login</button>
+                                <input type="email" {...register("email")} placeholder="Email" required />
+                                <input type="password" {...register("password")} placeholder="Password" required />
+                                <button type='submit'>Login</button>
                             </form>
                         </div>
                     </div>

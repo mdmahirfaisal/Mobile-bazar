@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { useNavigate } from 'react-router-dom';
 // import { mobileProducts } from '../../Products/Products/Products';
 
 
@@ -19,7 +20,7 @@ const ManageProduct = () => {
     const [manageProductsAdmin, setManageProductsAdmin] = React.useState([]);
 
     React.useEffect(() => {
-        fetch('https://lit-citadel-97865.herokuapp.com/products')
+        fetch('https://mysterious-waters-68327.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setManageProductsAdmin(data))
             .catch(error => Swal.fire({
@@ -34,59 +35,59 @@ const ManageProduct = () => {
 
     // handle delete 
     const handleDeleteProduct = (id) => {
-        // const swalWithBootstrapButtons = Swal.mixin({
-        //     customClass: {
-        //         confirmButton: 'btn btn-success ms-2',
-        //         cancelButton: 'btn btn-danger'
-        //     },
-        //     buttonsStyling: false
-        // })
-        // swalWithBootstrapButtons.fire({
-        //     title: 'Are you sure?',
-        //     text: "You won't be able to delete this item!",
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Yes, delete it!',
-        //     cancelButtonText: 'No, cancel!',
-        //     reverseButtons: true
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         const url = `https://lit-citadel-97865.herokuapp.com/products/${id}`;
-        //         fetch(url, {
-        //             method: 'DELETE'
-        //         })
-        //             .then(res => res.json())
-        //             .then(data => {
-        //                 if (data.deletedCount > 0) {
-        //                     const available = manageProductsAdmin.filter(managePd => managePd._id !== id);
-        //                     setManageProductsAdmin(available);
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success ms-2',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to delete this item!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `https://mysterious-waters-68327.herokuapp.com/products/${id}`;
+                fetch(url, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const available = manageProductsAdmin.filter(managePd => managePd._id !== id);
+                            setManageProductsAdmin(available);
 
-        //                     swalWithBootstrapButtons.fire(
-        //                         'Deleted!',
-        //                         'Your file has been deleted.',
-        //                         'success'
-        //                     )
-        //                 }
-        //             })
+                            swalWithBootstrapButtons.fire(
+                                'Deleted!',
+                                'This Product has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
 
-        //     } else if (
-        //         result.dismiss === Swal.DismissReason.cancel
-        //     ) {
-        //         swalWithBootstrapButtons.fire(
-        //             'Cancelled',
-        //             'Your imaginary file is safe :)',
-        //             'error'
-        //         )
-        //     }
-        // })
-
-
+            } else if (
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'this file is safe :)',
+                    'error'
+                )
+            }
+        })
     };
 
+    let navigate = useNavigate();
 
     // update product
     const handleUpdateProduct = (id) => {
-        // history.push(`/dashboard/updateProduct/${id}`)
+        const url = `/dashboard/update/${id}`
+        navigate(url);
     }
     return (
         <div>

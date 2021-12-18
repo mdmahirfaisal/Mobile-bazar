@@ -1,10 +1,36 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import { mobileProducts } from '../../Products/Products/Products';
+import Swal from 'sweetalert2'
 
-const sliceProducts = mobileProducts.slice(0, 6);
+
 
 const HomeProduct = () => {
+
+    /// load All Products 
+    const [allProducts, setAllProducts] = React.useState([]);
+    React.useEffect(() => {
+        fetch('https://mysterious-waters-68327.herokuapp.com/products')
+            .then(res => res.json())
+            .then(data => {
+                setAllProducts(data);
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error} check your internet connection`,
+
+                })
+            })
+    }, []);
+
+    const sliceProducts = allProducts?.slice(0, 6);
+    const navigate = useNavigate();
+    const handleCheckOut = id => {
+        navigate(`/placeOrder/${id}`)
+    }
+
     return (
         <div id='products' className='my-5'>
             <h2 className='text-secondary fw-bold mb-5'>OUR PRODUCTS</h2>
@@ -15,22 +41,22 @@ const HomeProduct = () => {
                             <div className="product-container h-100 ">
                                 <div className="product-container-inner">
                                     <div className="product-container-content">
-                                        <span style={{ maxHeight: '', marginTop: '-80px' }}>2020 Passport</span>
-                                        <h2 style={{ marginTop: '-80px' }}>{product.name} </h2>
+                                        <span style={{ maxHeight: '', marginTop: '-80px' }}></span>
+                                        <h2 style={{ marginTop: '-80px' }}>{product?.name} </h2>
                                     </div>
 
                                     <div className="product-container-lower">
-                                        <img src={product.image} alt="honda png" style={{ maxHeight: '', marginTop: '-120px' }} className="image" />
+                                        <img src={product?.img} alt="honda png" style={{ maxHeight: '', marginTop: '-100px' }} className="image" />
                                         <ul className="features-list img-fluid">
-                                            <li>{product.email} </li>
-                                            <li>$ {product.price} </li>
-                                            <li>Massage function for driver and passanger</li>
+                                            <li>{product?.name} </li>
+                                            <li>$ {product?.price} </li>
+                                            <li> <small>{product?.description.slice(0, 40)}</small></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <HashLink to="/placeOrder">
-                                    <button className='cta fw-bold'>See more</button>
-                                </HashLink>
+
+                                <button onClick={() => handleCheckOut(product?._id)} className='cta fw-bold'>See more</button>
+
                             </div>
                         </section>)
                     }

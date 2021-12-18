@@ -14,17 +14,21 @@ import NotFound from './Pages/NotFound/NotFound';
 import ManageOrders from './Pages/Dashboard/ManageOrders/ManageOrders';
 import ManageProduct from './Pages/Dashboard/ManageProduct/ManageProduct';
 import MyOrders from './Pages/Dashboard/MyOrders/MyOrders';
+import UpdateProduct from './Pages/Dashboard/UpdateProduct/UpdateProduct';
+// import AuthProvider from './context/AuthProvider';
+// import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
+
 
 
 function App() {
   return (
     <div className="App">
+      {/* <AuthProvider> */}
       <BrowserRouter>
         <Routes>
-
           <Route path="/home" element={<Home />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/placeOrder" element={<PlaceOrder />} />
+          <Route path="/placeOrder/:detailId" element={<PlaceOrder />} />
           <Route path="/test" element={<Test></Test>} />
 
 
@@ -36,7 +40,9 @@ function App() {
 
             <Route path={`/dashboard/manageProduct`} element={<ManageProduct />} />
 
-            <Route path={`/dashboard/manageOrders`} element={<ManageOrders></ManageOrders>} />
+            <Route path={`/dashboard/update/:ProductId`} element={<UpdateProduct />} />
+
+            <Route path={`/dashboard/manageOrders`} element={<ManageOrders />} />
 
             <Route path={`/dashboard/myOrders`} element={<MyOrders></MyOrders>} />
 
@@ -51,6 +57,7 @@ function App() {
           <Route exact path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      {/* </AuthProvider> */}
     </div>
   );
 }
