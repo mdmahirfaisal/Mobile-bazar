@@ -7,21 +7,23 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Swal from 'sweetalert2'
+import useFirebase from '../../../hooks/useFirebase';
 
 
 const tableStyle = {
     borderRight: '1px solid gray'
 }
 const MyOrders = () => {
+    const { user } = useFirebase()
     const [bookings, setBookings] = React.useState([]);
-    console.log(bookings);
-
     React.useEffect(() => {
-        // const url = `https://mysterious-waters-68327.herokuapp.com/ordersData?email=${user.email}`;
-        const url = `https://mysterious-waters-68327.herokuapp.com/ordersData`;
+        const url = `https://mysterious-waters-68327.herokuapp.com/ordersData?email=${user.email}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => setBookings(data))
+            .then(data => {
+                setBookings(data)
+                console.log(data)
+            })
             .catch(error => {
                 Swal.fire({
                     position: 'top-middle',
@@ -32,7 +34,7 @@ const MyOrders = () => {
                 })
             })
 
-    }, []);
+    }, [user.email]);
 
 
     // handle delete 
@@ -101,7 +103,7 @@ const MyOrders = () => {
                         <TableBody>
                             {bookings.map((row) => (
                                 <TableRow
-                                    key={row.id}
+                                    key={row._id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                     <TableCell style={tableStyle} align="left"><img src={row.image} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
@@ -110,7 +112,7 @@ const MyOrders = () => {
                                     </TableCell>
                                     <TableCell className=" fs-6" style={tableStyle} align="left">{row.name} <br /> <small className="text-dark">{new Date(row.orderTime).toDateString()}</small> </TableCell>
                                     <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row.price}</TableCell>
-                                    <TableCell className="fw-bold fs-5 text-info bg-light" align="left">{row?.status} <button onClick={() => handleDeleteOrder(row.id)} className="btn btn-danger  px-3 py-0 ms-lg-3 rounded-pill">Cancel</button> </TableCell>
+                                    <TableCell className="fw-bold fs-5 text-info bg-light" align="left">{row?.status} <button onClick={() => handleDeleteOrder(row._id)} className="btn btn-danger  px-3 py-0 ms-lg-3 rounded-pill">Cancel</button> </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

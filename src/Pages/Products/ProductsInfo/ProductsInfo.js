@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProductInfo.css';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 
 const ProductsInfo = ({ product }) => {
     const { name, id, img, price, description } = product;
@@ -30,7 +32,7 @@ const ProductsInfo = ({ product }) => {
                     </div>
                 </div>
 
-                <button onClick={() => handleCheckOut(id)} className='cta fw-bold'>See more</button>
+                <button onClick={() => handleCheckOut(id)} className='cta fw-bold'><ShoppingCartIcon className='me-2' /> Buy now</button>
 
 
             </div>

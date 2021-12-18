@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile, } from "firebase/auth";
-import initializeFirebase from "../pages/Login/Firebase/Firebase.init";
 import Swal from 'sweetalert2'
 
-
-
-
+import initializeFirebase from '../Pages/Login/Firebase/Firebase.init';
 // initialize firebase app
 initializeFirebase();
 
@@ -30,48 +27,74 @@ const useFirebase = () => {
                 // save to database or update
                 saveUser(user.email, user.displayName, 'PUT')
                 setAuthError('')
-
             })
             .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error.message}`,
+
+                })
                 setAuthError(error.message)
             })
             .finally(() => setLoading(false));
     }
 
     // create new user with register
-    const registerUser = (email, Password, name, navigate) => {
+    const registerUser = (email, Password, name, navigate, reset) => {
         createUserWithEmailAndPassword(auth, email, Password)
             .then(() => {
                 setAuthError('');
+                reset()
                 const newUser = { email, displayName: name };
                 setUser(newUser);
 
                 // database save user
                 saveUser(email, name, 'POST');
-
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
                 }).catch((error) => {
                     setAuthError(error.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `${error.message} `,
+
+                    })
                 });
 
                 navigate('/');
             })
             .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error.message}`,
+
+                })
                 setAuthError(error.message);
             })
             .finally(() => setLoading(false));
     };
 
     // all ready create user login
-    const loginUser = (email, password, location, navigate) => {
+    const loginUser = (email, password, location, navigate, reset) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((user) => {
-
+                setUser(user)
+                console.log(user)
+                setAuthError('');
                 handleResponse(user.user, location, navigate)
+                reset()
             })
             .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error.message} `,
+
+                })
                 setAuthError(error.message);
             })
             .finally(() => setLoading(false));
@@ -183,25 +206,25 @@ const useFirebase = () => {
             })
     };
 
-    // /// All Products 
-    // const [allProducts, setAllProducts] = useState([]);
-    // useEffect(() => {
-    //     fetch('https://mysterious-waters-68327.herokuapp.com/products')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setAllProducts(data);
-    //         })
-    //         .catch(error => {
-    //             Swal.fire({
-    //                 icon: 'error',
-    //                 title: 'Oops...',
-    //                 text: `${error} check your internet connection`,
+    /// All Products 
+    const [allProducts, setAllProducts] = useState([]);
+    useEffect(() => {
+        fetch('https://mysterious-waters-68327.herokuapp.com/products')
+            .then(res => res.json())
+            .then(data => {
+                setAllProducts(data);
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error} check your internet connection`,
 
-    //             })
-    //         })
-    // }, []);
+                })
+            })
+    }, []);
     return {
-        user, admin, authError, loading, signInWithGoogle, registerUser, loginUser, logOut, setLoading, setAuthError
+        allProducts, user, admin, authError, loading, signInWithGoogle, registerUser, loginUser, logOut, setLoading, setAuthError
     }
 };
 

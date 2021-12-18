@@ -31,16 +31,19 @@
     border-radius: 15px;
   }
   .profile-container .profile-card:hover {
-    height: 420px;
+    height: 380px;
   }
   
   .profile-container .profile-card .profile-image {
     position: relative;
-    width: 370px;
-    /* height: 260px; */
+    background-color: white;
+    border-radius: 20px;
+    
+    width: 365px;
+    height: 260px;
   
-    top: -40%;
-    left: 8px;
+    top: -30%;
+    /* left: 8px; */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }

@@ -9,6 +9,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 import { Form } from 'react-bootstrap';
+import useFirebase from '../../../hooks/useFirebase';
 
 const labels = {
     0.5: 'Useless',
@@ -27,30 +28,31 @@ const labels = {
 
 const AddReview = () => {
     const { register, handleSubmit, reset } = useForm();
-
+    const { user } = useFirebase();
     const [rateValue, setRateValue] = React.useState(0);
     const [hover, setHover] = React.useState(-1);
     const [userImg, setUserImg] = React.useState(null)
-    console.log(rateValue, userImg);
 
 
     // handle image upload 
-
     const handleImgUpload = async e => {
         const imageData = new FormData();
-        console.log(e.target.files[0]);
         imageData.set('key', 'b1329658ac9cd12416e1b24f8e686347');
         await imageData.append('image', e.target.files[0])
 
         axios.post('https://api.imgbb.com/1/upload',
             imageData)
             .then(response => {
-                console.log(response.data.data.display_url);
 
                 setUserImg(response.data.data.display_url);
             })
             .catch(error => {
-                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error.message} `,
+
+                })
             });
     };
 
@@ -66,7 +68,7 @@ const AddReview = () => {
         };
 
         reset()
-        axios.post('http://localhost:5000/', data)
+        axios.post('https://mysterious-waters-68327.herokuapp.com/review', data)
             .then(res => {
                 console.log(res);
                 if (res.data.insertedId) {
@@ -81,11 +83,15 @@ const AddReview = () => {
                 }
             })
             .catch(error => {
-                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error.message} `,
+
+                })
             })
 
     };
-
 
     const uploadFile = () => {
         document.getElementById('uploadImg').click();
@@ -97,11 +103,11 @@ const AddReview = () => {
             <div className="bg-white shadow border-0 bg-white shadow   px-3" style={{ borderRadius: "15px", maxWidth: '700px', margin: '0 auto' }}>
                 <form onSubmit={handleSubmit(onSubmit)} className=" row p-4 " style={{ borderRadius: '20px' }}>
 
-                    <TextField className="col-12" variant="standard" placeholder="Name" fullWidth type="text" {...register("name", { required: true, maxLength: 40 })} label="Name" defaultValue={'User name'} /> <br /><br />
+                    <TextField className="col-12" variant="standard" placeholder="Name" fullWidth type="text" {...register("name", { maxLength: 50 })} label="Name" defaultValue={user.displayName} required /> <br /><br />
 
-                    <TextField className="col-12 mt-3" variant="standard" placeholder="Email" fullWidth type="email" {...register("email", { required: true })} label="Email" defaultValue={'User@email.com'} /> <br /> <br />
+                    <TextField className="col-12 mt-3" variant="standard" placeholder="Email" fullWidth type="email" {...register("email")} required label="Email" defaultValue={user.email} /> <br /> <br />
 
-                    <TextField className="col-12 mt-3" variant="standard" fullWidth {...register("address")} label="Address" /> <br />
+                    <TextField className="col-12 mt-3" variant="standard" fullWidth {...register("address")} label="Address" required /> <br />
 
                     <div className="col-12 mt-5">
                         <div className=" row mb-3">
@@ -145,11 +151,11 @@ const AddReview = () => {
                     <Form.Label className="text-start  mt-4">Description</Form.Label>
                     <div style={{}}>
                         <TextareaAutosize
-
+                            required
                             aria-label="minimum height"
                             minRows={5}
                             placeholder="Description"
-                            className="col-12  bg-white" style={{ borderRadius: '5px' }} {...register("description", { required: true })}
+                            className="col-12  bg-white" style={{ borderRadius: '5px' }} {...register("description",)}
                         />
                     </div>
                     <Button type="submit" variant="contained" className=" w-100  rounded-pill send-button">

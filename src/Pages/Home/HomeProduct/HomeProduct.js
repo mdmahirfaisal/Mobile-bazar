@@ -2,11 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import Swal from 'sweetalert2'
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 
 const HomeProduct = () => {
-
     /// load All Products 
     const [allProducts, setAllProducts] = React.useState([]);
     React.useEffect(() => {
@@ -55,14 +56,14 @@ const HomeProduct = () => {
                                     </div>
                                 </div>
 
-                                <button onClick={() => handleCheckOut(product?._id)} className='cta fw-bold'>See more</button>
+                                <button onClick={() => handleCheckOut(product?._id)} className='cta fw-bold'><ShoppingCartIcon className='me-2' /> Buy now</button>
 
                             </div>
                         </section>)
                     }
                 </div>
-                <div className='d-flex justify-content-end'>
-                    <HashLink to="/products#products" className='text-decoration-none  fs-5 btn btn-outline-info mt-2 ms-auto py-2 rounded-pill '>... More Products</HashLink>
+                <div className='d-flex justify-content-end' style={{ marginTop: '-30px' }}>
+                    <HashLink to="/products#products" className='text-decoration-none  fs-5 btn btn-outline-dark  ms-auto  py-0 '>More Products ..<KeyboardDoubleArrowRightIcon /></HashLink>
                 </div>
             </div>
         </div>
