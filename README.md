@@ -1,3 +1,3 @@
-Mobile Bazar [Visit My Website](https://github.com/facebook/create-react-app)
+Mobile Bazar [Visit My Website](https://mobilebazar.netlify.app/)
 
 

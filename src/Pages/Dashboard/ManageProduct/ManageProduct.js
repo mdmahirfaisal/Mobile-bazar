@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
-// import { mobileProducts } from '../../Products/Products/Products';
+
 
 
 
@@ -86,7 +86,7 @@ const ManageProduct = () => {
 
     // update product
     const handleUpdateProduct = (id) => {
-        const url = `/dashboard/update/${id}`
+        const url = `/dashboard/editProduct/${id}`
         navigate(url);
     }
     return (
@@ -117,8 +117,8 @@ const ManageProduct = () => {
                                         <TableCell className=" fs-6" style={tableStyle} align="left">{row?.description.slice(0, 20)} <br /></TableCell>
                                         <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row?.price}</TableCell>
                                         <TableCell className="fw-bold fs-5 text-info bg-light" align="left">
-                                            <button className="btn btn-outline-info py-1 mb-2 me-2 " onClick={() => handleUpdateProduct(row?._id)}><i className="fas fa-edit me-1"></i> Update</button>
-                                            <button className="btn btn-outline-danger mb-2  py-1" onClick={() => handleDeleteProduct(row?._id)}><i className="fas fa-trash-alt me-1"></i> Delete</button>
+                                            <button className="btn btn-outline-info py-1 mb-2 me-2 " onClick={() => handleUpdateProduct(row._id)} ><i className="fas fa-edit me-1"></i> Update</button>
+                                            <button className="btn btn-outline-danger mb-2  py-1" onClick={() => handleDeleteProduct(row._id)}><i className="fas fa-trash-alt me-1"></i> Delete</button>
 
                                         </TableCell>
                                     </TableRow>

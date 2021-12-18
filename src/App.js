@@ -9,12 +9,11 @@ import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/Login/Login';
 import Products from './Pages/Products/Products/Products';
 import PlaceOrder from './Pages/Shared/PlaceOrder/PlaceOrder';
-import Test from './Pages/Shared/PlaceOrder/CheckOut';
 import NotFound from './Pages/NotFound/NotFound';
 import ManageOrders from './Pages/Dashboard/ManageOrders/ManageOrders';
 import ManageProduct from './Pages/Dashboard/ManageProduct/ManageProduct';
 import MyOrders from './Pages/Dashboard/MyOrders/MyOrders';
-import UpdateProduct from './Pages/Dashboard/UpdateProduct/UpdateProduct';
+import EditProduct from './Pages/Dashboard/EditProduct/EditProduct';
 // import AuthProvider from './context/AuthProvider';
 // import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute';
 
@@ -29,7 +28,6 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/placeOrder/:detailId" element={<PlaceOrder />} />
-          <Route path="/test" element={<Test></Test>} />
 
 
           {/* Dashboard route  */}
@@ -40,7 +38,7 @@ function App() {
 
             <Route path={`/dashboard/manageProduct`} element={<ManageProduct />} />
 
-            <Route path={`/dashboard/update/:ProductId`} element={<UpdateProduct />} />
+            <Route path={`/dashboard/editProduct/:id`} element={<EditProduct></EditProduct>} />
 
             <Route path={`/dashboard/manageOrders`} element={<ManageOrders />} />
 

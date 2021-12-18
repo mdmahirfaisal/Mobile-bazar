@@ -37,7 +37,7 @@ const HomeProduct = () => {
             <div className="container">
                 <div className="row">
                     {
-                        sliceProducts.map(product => <section className='col-12 col-md-6 col-lg-4 mb-5'>
+                        sliceProducts.map(product => <section key={product._id} className='col-12 col-md-6 col-lg-4 mb-5'>
                             <div className="product-container h-100 ">
                                 <div className="product-container-inner">
                                     <div className="product-container-content">
