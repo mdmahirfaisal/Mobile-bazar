@@ -14,27 +14,21 @@ const tableStyle = {
     borderRight: '1px solid gray'
 }
 const MyOrders = () => {
-    const { user } = useFirebase()
+    const { user } = useFirebase();
     const [bookings, setBookings] = React.useState([]);
+
     React.useEffect(() => {
         const url = `https://mysterious-waters-68327.herokuapp.com/ordersData?email=${user.email}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => {
-                setBookings(data)
-                console.log(data)
-            })
-            .catch(error => {
-                Swal.fire({
-                    position: 'top-middle',
-                    icon: 'error',
-                    title: ` ${error}`,
-                    showConfirmButton: false,
-                    timer: 3000
-                })
-            })
+            .then(data => setBookings(data))
+            .catch(error => Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: `${error}`,
+            }))
 
-    }, [user.email]);
+    }, [user]);
 
 
     // handle delete 
@@ -68,7 +62,7 @@ const MyOrders = () => {
 
                             swalWithBootstrapButtons.fire(
                                 'Deleted!',
-                                'This item has been deleted.',
+                                'Your file has been deleted.',
                                 'success'
                             )
                         }
@@ -84,11 +78,13 @@ const MyOrders = () => {
                 )
             }
         })
+
+
     };
     return (
-        <div style={{ backgroundColor: '', padding: '' }} >
+        <div  >
             <h1 className="fw-bold text-secondary py-3">MY ORDERS</h1>
-            <Paper elevation={5} sx={{ width: '100%', overflow: '' }}>
+            <Paper elevation={5}>
                 <TableContainer sx={{ backgroundColor: '#fff', borderRadius: '20px' }}>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
@@ -106,13 +102,13 @@ const MyOrders = () => {
                                     key={row._id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell style={tableStyle} align="left"><img src={row.image} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
+                                    <TableCell style={tableStyle} align="left"><img src={row.img} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
                                     <TableCell className=" fs-6" style={tableStyle} component="th" scope="row">
                                         {""}
                                     </TableCell>
                                     <TableCell className=" fs-6" style={tableStyle} align="left">{row.name} <br /> <small className="text-dark">{new Date(row.orderTime).toDateString()}</small> </TableCell>
                                     <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row.price}</TableCell>
-                                    <TableCell className="fw-bold fs-5 text-info bg-light" align="left">{row?.status} <button onClick={() => handleDeleteOrder(row._id)} className="btn btn-danger  px-3 py-0 ms-lg-3 rounded-pill">Cancel</button> </TableCell>
+                                    <TableCell className="fw-bold fs-5 text-info bg-light" align="left">{row.status} <button onClick={() => handleDeleteOrder(row._id)} className="btn btn-danger  px-3 py-0 ms-lg-3 rounded-pill">Cancel</button> </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

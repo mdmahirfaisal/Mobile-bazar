@@ -103,9 +103,9 @@ const AddReview = () => {
             <div className="bg-white shadow border-0 bg-white shadow   px-3" style={{ borderRadius: "15px", maxWidth: '700px', margin: '0 auto' }}>
                 <form onSubmit={handleSubmit(onSubmit)} className=" row p-4 " style={{ borderRadius: '20px' }}>
 
-                    <TextField className="col-12" variant="standard" placeholder="Name" fullWidth type="text" {...register("name", { maxLength: 50 })} label="Name" defaultValue={user.displayName} required /> <br /><br />
+                    <TextField className="col-12" variant="standard" placeholder="Name" fullWidth type="text" {...register("name", { maxLength: 50 })} label="Name" defaultValue={user.displayName || ""} required /> <br /><br />
 
-                    <TextField className="col-12 mt-3" variant="standard" placeholder="Email" fullWidth type="email" {...register("email")} required label="Email" defaultValue={user.email} /> <br /> <br />
+                    <TextField className="col-12 mt-3" variant="standard" placeholder="Email" fullWidth type="email" {...register("email")} required label="Email" defaultValue={user.email || ""} /> <br /> <br />
 
                     <TextField className="col-12 mt-3" variant="standard" fullWidth {...register("address")} label="Address" required /> <br />
 

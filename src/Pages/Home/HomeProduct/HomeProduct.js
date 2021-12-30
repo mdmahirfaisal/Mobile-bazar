@@ -4,6 +4,8 @@ import { HashLink } from 'react-router-hash-link';
 import Swal from 'sweetalert2'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Fade from 'react-reveal/Fade';
+
 
 
 
@@ -34,12 +36,12 @@ const HomeProduct = () => {
 
     return (
         <div id='products' className='my-5'>
-            <h2 className='text-secondary fw-bold mb-5'>OUR PRODUCTS</h2>
+            <Fade bottom duration={3000} distance="100px">   <h2 className='text-secondary fw-bold mb-5'>OUR PRODUCTS</h2></Fade>
             <div className="container">
                 <div className="row">
                     {
                         sliceProducts.map(product => <section key={product._id} className='col-12 col-md-6 col-lg-4 mb-5'>
-                            <div className="product-container h-100 ">
+                            <Fade bottom duration={3000} distance="100px"> <div className="product-container h-100 ">
                                 <div className="product-container-inner">
                                     <div className="product-container-content">
                                         <span style={{ maxHeight: '', marginTop: '-80px' }}></span>
@@ -58,7 +60,7 @@ const HomeProduct = () => {
 
                                 <button onClick={() => handleCheckOut(product?._id)} className='cta fw-bold'><ShoppingCartIcon className='me-2' /> Buy now</button>
 
-                            </div>
+                            </div></Fade>
                         </section>)
                     }
                 </div>

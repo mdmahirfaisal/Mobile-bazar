@@ -21,6 +21,7 @@ const useFirebase = () => {
         setLoading(true);
         signInWithPopup(auth, googleProvider)
             .then((result) => {
+
                 const destination = location?.state?.from || '/';
                 navigate(destination);
                 const user = result.user;
@@ -41,11 +42,11 @@ const useFirebase = () => {
     }
 
     // create new user with register
-    const registerUser = (email, Password, name, navigate, reset) => {
+    const registerUser = (email, Password, name, navigate) => {
         createUserWithEmailAndPassword(auth, email, Password)
             .then(() => {
                 setAuthError('');
-                reset()
+
                 const newUser = { email, displayName: name };
                 setUser(newUser);
 
@@ -83,10 +84,10 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((user) => {
                 setUser(user)
-                console.log(user)
+                console.log(user.user)
                 setAuthError('');
                 handleResponse(user.user, location, navigate)
-                reset()
+                // reset()
             })
             .catch((error) => {
                 Swal.fire({
@@ -176,6 +177,7 @@ const useFirebase = () => {
             .then(res => res.json())
             .then(data => {
                 setAdmin(data.admin)
+                console.log(data.admin)
             })
             .catch(error => {
                 Swal.fire({
@@ -218,7 +220,7 @@ const useFirebase = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: `${error} check your internet connection`,
+                    text: `${error}`,
 
                 })
             })

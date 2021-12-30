@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './Details.css';
 import phoneImg from './image/phone.png';
+import { Fade } from 'react-reveal';
 
 
 
@@ -19,18 +20,18 @@ const Details = () => {
     return (
         <section id='details' className='details-body '>
             <div className="container py-5">
-                <h2 className='text-light fw-bold m-0 mt-5 p-0'>SEE WHY CUSTOMERS LOVE THE OUR MOBILES</h2>
-                <h6 className='text-secondary  my-4'>DESIGNED TO PERFECTION</h6>
+                <Fade bottom duration={2000} distance="100px">   <h2 className='text-light fw-bold m-0 mt-5 p-0'>SEE WHY CUSTOMERS LOVE THE OUR MOBILES</h2>
+                    <h6 className='text-secondary  my-4'>DESIGNED TO PERFECTION</h6> </Fade>
                 <div className="row mt-5">
                     <div className="col-12 col-md-7 col-lg-5 mb-5">
-                        <div>
+                        <Fade left duration={2000} distance="50px">  <div>
                             <img src={phoneImg} className='details-img img-fluid' alt="Phone " />
-                        </div>
+                        </div></Fade>
                     </div>
 
 
                     <div className="col-12 col-md-5 col-lg-7">
-                        <div>
+                        <Fade right duration={2000} distance="50px">   <div>
                             <Accordion className="accordion" expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                                 <AccordionSummary
                                     expandIcon={<ExpandMoreIcon />}
@@ -214,7 +215,7 @@ const Details = () => {
                                     </Typography>
                                 </AccordionDetails>
                             </Accordion>
-                        </div>
+                        </div></Fade>
                     </div>
                 </div>
 

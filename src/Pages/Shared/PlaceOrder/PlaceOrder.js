@@ -10,9 +10,11 @@ import { Container } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 import { TextField, Button, CircularProgress } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import useFirebase from '../../../hooks/useFirebase';
 
 
 const PlaceOrder = () => {
+    const { user } = useFirebase();
     const { detailId } = useParams()
     const [product, setProduct] = useState({});
     const { register, handleSubmit, reset } = useForm();
@@ -42,9 +44,8 @@ const PlaceOrder = () => {
     /// Add order to database
     const handlePlaceOrder = (data) => {
         console.log(data)
-        const userData = { status: 'pending', name: data.name, email: data.email, phone: data.phone, address: data.address };
-        // const userData = { status: 'pending', name: user.displayName, email: user.email, phone: data.phone, address: data.address };
 
+        const userData = { status: 'pending', name: user.displayName, email: user.email, phone: data.phone, address: data.address };
         const newOrder = { ...userData, ...addOrder, orderTime: new Date() };
         setProductUpload(true)
         fetch('https://mysterious-waters-68327.herokuapp.com/orders', {
@@ -67,7 +68,7 @@ const PlaceOrder = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: `${error}`,
+                    text: `${error.message}`,
                 })
             })
     };
@@ -100,11 +101,11 @@ const PlaceOrder = () => {
                             </div>
                             <div className="half col-sm-12 col-md-6">
                                 <form onSubmit={handleSubmit(handlePlaceOrder)} className=" w-100 h-100  p-3 ">
-                                    <TextField variant="standard" placeholder="Name" fullWidth type="text" {...register("name", { required: true, maxLength: 40 })} label="Name" /> <br /> <br />
-                                    <TextField variant="standard" placeholder="Email" fullWidth type="email" {...register("email", { required: true })} label="Email" /> <br /> <br />
-                                    <TextField variant="standard" label="Phone" fullWidth  {...register("phone")} /> <br /> <br />
+                                    <TextField variant="standard" type="text" defaultValue={user.displayName || ""} label="Name (optional)" /> <br /> <br />
+                                    <TextField variant="standard" type="email" defaultValue={user.email || ""} label="Email (optional)" /> <br /> <br />
+                                    <TextField variant="standard" label="Phone" required   {...register("phone")} /> <br /> <br />
 
-                                    <TextField variant="standard" fullWidth {...register("address", { required: true })} label="Address" defaultValue={""} /> <br /> <br />
+                                    <TextField variant="standard"  {...register("address", { required: true })} label="Address" /> <br /> <br />
                                     <Button type="submit" variant="contained" className=" w-100  rounded-pill"> Place order</Button>
                                 </form>
 

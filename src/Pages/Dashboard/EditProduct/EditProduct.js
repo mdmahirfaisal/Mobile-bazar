@@ -26,7 +26,6 @@ const EditProduct = () => {
             .then(res => res.json())
             .then(data => setProduct(data))
             .catch(error => Swal.fire({
-                position: 'top-middle',
                 icon: 'error',
                 title: `${error}`,
                 showConfirmButton: false,

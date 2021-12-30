@@ -116,7 +116,7 @@ const Products = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: `${error} check your internet connection`,
+                    text: `${error} `,
 
                 })
             })

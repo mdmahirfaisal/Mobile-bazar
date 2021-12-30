@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -13,8 +13,10 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ListItem from '@mui/material/ListItem';
 import CloseIcon from '@mui/icons-material/Close';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, Overlay, Popover } from 'react-bootstrap';
 import { HashLink } from 'react-router-hash-link';
+import useFirebase from '../../../hooks/useFirebase';
+import Swal from 'sweetalert2';
 
 const drawerWidth = 210;
 
@@ -23,7 +25,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
         flexGrow: 1,
         padding: theme.spacing(3),
         transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
+            easing: theme.transitions.easing,
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: `-${drawerWidth}px`,
@@ -56,6 +58,7 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const DashboardHome = () => {
+    const { user, admin, logOut } = useFirebase();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -67,6 +70,43 @@ const DashboardHome = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+
+    // popover 
+    const [show, setShow] = React.useState(false);
+    const [target, setTarget] = React.useState(null);
+    const ref = React.useRef(null)
+
+    const handleClick = (event) => {
+        setShow(!show);
+        setTarget(event.target);
+    };
+
+
+    // logout 
+    const navigate = useNavigate()
+    // logout 
+    const handleLogout = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't to Logout!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Logout'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+                navigate('/')
+                Swal.fire(
+                    'Login out',
+                    'Logout successfully.',
+                    'success'
+                )
+            }
+        })
+    }
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -88,10 +128,32 @@ const DashboardHome = () => {
                         <MenuIcon className="fs-1" />
                     </IconButton>
                     <br />
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography className='text-info fw-bold' variant="h5" noWrap component="div">
                         Mobile Bazar
                     </Typography>
-                    <HashLink to="/home" className="text-decoration-none ms-auto"><Button variant='outlined' className=" px-md-5 py-1 rounded-pill ms-auto me-md-5">Home</Button></HashLink>
+
+                    {user.email && <div className='ms-auto me-5' ref={ref}>
+                        <h1 onClick={handleClick} style={{ cursor: 'pointer' }}><i className="fas fa-user-circle"></i></h1>
+
+                        <Overlay
+                            show={show}
+                            target={target}
+                            placement="bottom"
+                            container={ref}
+                            containerPadding={20}
+                        >
+                            <Popover id="popover-contained" className='border-0 bg-light shadow'>
+                                <Popover.Header className='border-0' > <h5 className='text-center text-primary'>{user.displayName}</h5></Popover.Header>
+                                <Popover.Body>
+                                    <p>{user.email}</p>
+                                    <button onClick={handleLogout} className='btn btn-outline-danger w-100 py-0 rounded-pill text-center mx-auto mb-3'>Logout</button>
+                                    <HashLink to="/home" className="text-decoration-none ms-auto"><Button variant='outlined' className=" px-3 w-100 py-0 rounded-pill ms-auto me-md-5">Home</Button></HashLink>
+                                </Popover.Body>
+                            </Popover>
+                        </Overlay>
+                    </div>}
+
+
 
                 </Toolbar>
             </AppBar>
@@ -114,31 +176,45 @@ const DashboardHome = () => {
                         <HashLink to="/dashboard/userProfile" className='text-decoration-none w-100 text-dark fw-bold'>PROFILE</HashLink>
                     </ListItem>
 
-                    <ListItem button>
-                        <HashLink to="/dashboard/addProduct" className='text-decoration-none w-100 text-dark fw-bold'>ADD PRODUCT</HashLink>
-                    </ListItem>
+                    {user.email && admin && <>
+                        <ListItem button>
+                            <HashLink to="/dashboard/manageOrders" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE ORDERS</HashLink>
+                        </ListItem>
 
-                    <ListItem button>
-                        <HashLink to="/dashboard/myOrders" className='text-decoration-none w-100 text-dark fw-bold'>MY ORDERS</HashLink>
-                    </ListItem>
+                        <ListItem button>
+                            <HashLink to="/dashboard/addProduct" className='text-decoration-none w-100 text-dark fw-bold'>ADD PRODUCT</HashLink>
+                        </ListItem>
 
-                    <ListItem button>
-                        <HashLink to="/dashboard/manageProduct" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE PRODUCT</HashLink>
-                    </ListItem>
+                        <ListItem button>
+                            <HashLink to="/dashboard/manageProduct" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE PRODUCT</HashLink>
+                        </ListItem>
 
-                    <ListItem button>
+                        <ListItem button>
+                            <HashLink to="/dashboard/makeAdmin" className='text-decoration-none w-100 text-dark fw-bold'>CREATE ADMIN</HashLink>
+                        </ListItem>
 
-                        <HashLink to="/dashboard/manageOrders" className='text-decoration-none w-100 text-dark fw-bold'>MANAGE ORDERS</HashLink>
-                    </ListItem>
+                    </>}
 
-                    {/*                     
-                    <ListItem button>
-                        <HashLink to="/dashboard/manageProduct" className='text-decoration-none w-100 text-dark fw-bold'>MAKE ADMIN</HashLink>
-                    </ListItem> */}
 
-                    <ListItem button>
-                        <HashLink to="/dashboard/addReview" className='text-decoration-none w-100 text-dark fw-bold'>RATE US</HashLink>
-                    </ListItem>
+                    {
+                        !admin && <>
+                            <ListItem button>
+                                <HashLink to="/products" className='text-decoration-none w-100 text-dark fw-bold'>PRODUCTS</HashLink>
+                            </ListItem>
+
+                            <ListItem button>
+                                <HashLink to="/dashboard/myOrders" className='text-decoration-none w-100 text-dark fw-bold'>MY ORDERS</HashLink>
+                            </ListItem>
+
+                            <ListItem button>
+                                <HashLink to="/dashboard/userProfile" className='text-decoration-none w-100 text-dark fw-bold'>PAY NOW</HashLink>
+                            </ListItem>
+
+                            <ListItem button>
+                                <HashLink to="/dashboard/addReview" className='text-decoration-none w-100 text-dark fw-bold'>RATE US</HashLink>
+                            </ListItem>
+                        </>
+                    }
 
                     <Navbar
                         collapseOnSelect

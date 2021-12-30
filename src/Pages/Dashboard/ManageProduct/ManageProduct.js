@@ -24,7 +24,6 @@ const ManageProduct = () => {
             .then(res => res.json())
             .then(data => setManageProductsAdmin(data))
             .catch(error => Swal.fire({
-                position: 'top-middle',
                 icon: 'error',
                 title: `Set to ${error}`,
                 showConfirmButton: false,

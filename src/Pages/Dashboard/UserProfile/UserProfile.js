@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useFirebase from '../../../hooks/useFirebase';
 import './UserProfile.css';
+import profileImg from './image/profile.jpg';
 
 
 
@@ -35,12 +36,12 @@ const UserProfile = () => {
         <section>
             <h2 className='text-secondary fw-bold mb-5'>YOUR PROFILE</h2>
             <div className='user-profile-container'>
-                <div class="profile-container">
-                    <div class="profile-card">
-                        <div class="profile-image">
-                            <img src={user.photoURL} className='img-fluid' style={{ minHeight: '200px' }} alt='User' />
+                <div className="profile-container">
+                    <div className="profile-card">
+                        <div className="profile-image">
+                            <img src={user.photoURL || profileImg} className='img-fluid' style={{ height: '250px' }} alt='User' />
                         </div>
-                        <div class="content">
+                        <div className="content">
                             <h3 className='m-0 p-0 text-secondary fw-bold'>{user?.displayName || "User name"}</h3>
                             <h6 className='text-secondary mb-5 fw-light'>{user?.email || "User email"}</h6>
                             <button onClick={handleLogout} className='login-button text-center mx-auto mb-3'>Logout</button>

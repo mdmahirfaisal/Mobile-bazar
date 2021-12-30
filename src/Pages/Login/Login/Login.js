@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navigation from '../../Shared/Navigation/Navigation';
 import './Login.css';
 import useMediaQuery from "../../Shared/useMediaQuery/useMediaQuery";
 import { TextField } from '@mui/material';
-
+import { Toast } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
-import useFirebase from '../../../hooks/useFirebase';
 import GoogleIcon from '@mui/icons-material/Google';
+import useAuth from '../../../hooks/useAuth';
 
 
 const Login = () => {
-    const { register, handleSubmit, reset } = useForm();
-    const { signInWithGoogle, registerUser, loginUser, } = useFirebase();
+    const { register, handleSubmit } = useForm();
+    const { user, signInWithGoogle, registerUser, loginUser, } = useAuth();
+    const [newName, setNewName] = useState("");
+    const [newEmail, setNewEmail] = useState("");
+    const [newPass, setNewPass] = useState("");
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -26,26 +29,37 @@ const Login = () => {
     };
 
     //// handle register
-    const handleRegisterSubmit = (data) => {
-
-        registerUser(data.email, data.password, data.name, navigate, reset)
-        console.log(data)
+    const handleRegisterSubmit = () => {
+        // registerUser(registerData.email, registerData.password, registerData.name, navigate)
+        registerUser(newEmail, newPass, newName, navigate)
     }
 
     //// handle login
     const handleLoginSubmit = (data) => {
-        loginUser(data.email, data.password, location, navigate, reset)
+        console.log(data)
+        loginUser(data.email, data.password, location, navigate)
     };
 
-    // const admin = 'admin@gmail.com';
-    // const password = 123456;
 
     const imageButton = () => {
         document.querySelector('.cont').classList.toggle('s--signup');
     }
+    const [show, setShow] = useState(true);
     return (
         <>
             <Navigation></Navigation>
+            <div className="container d-flex justify-content-center">
+                {!user.email && <Toast className="" onClose={() => setShow(false)} show={show} delay={15000} autohide>
+                    <Toast.Header>
+                        {/* <img src="" className="rounded mr-2" alt="Info" /> */}
+                        <strong className="mr-auto">Important Info</strong>
+                    </Toast.Header>
+                    <Toast.Body className="text-center">
+                        Use this account to <br /> Sign in as an admin to test the admin panel <br /> Or login with a different account as a user.
+                    </Toast.Body>
+                </Toast>}
+            </div>
+
             {isDesktop &&
 
                 <div className="first-form">
@@ -55,11 +69,11 @@ const Login = () => {
                             <h2>Welcome back,</h2>
                             <form onSubmit={handleSubmit(handleLoginSubmit)} className='mb-3'>
                                 <TextField sx={{ width: '50%', m: 1 }}
-                                    //  defaultValue={user.email ? "" : admin}
+                                    defaultValue="admin@gmail.com"
                                     name="email" type="email" {...register("email")} label="Your Email" variant="standard" required />
 
                                 <TextField sx={{ width: '50%', m: 1 }} className="mb-3"
-                                    //  defaultValue={user.email ? "" : password}
+                                    defaultValue="123456"
                                     name="password" {...register("password")} label="Your Password"
                                     type="password"
                                     variant="standard" required />
@@ -85,17 +99,17 @@ const Login = () => {
                             </div>
                             <div className="form sign-up">
                                 <h2>Time to feel like home,</h2>
-                                <form onSubmit={handleSubmit(handleRegisterSubmit)} className='mb-3'>
+                                <form className='mb-3'>
                                     <TextField sx={{ width: '50%', m: 1 }}
-                                        name="name" type="text" {...register("name")} label="Your Name" variant="standard" required />
+                                        name="name" type="text" onChange={(e) => setNewName(e.target.value)} label="Your Name" variant="standard" required />
 
                                     <TextField sx={{ width: '50%', m: 1 }}
-                                        name="email" type="email" {...register("email")} label="Your Email" variant="standard" required />
+                                        name="email" type="email" onChange={(e) => setNewEmail(e.target.value)} label="Your Email" variant="standard" required />
 
                                     <TextField sx={{ width: '50%', m: 1 }}
-                                        name="password" type="password" className="mb-3" {...register("password")} label="Your Password" variant="standard" required />
+                                        name="password" type="password" className="mb-3" onChange={(e) => setNewPass(e.target.value)} label="Your Password" variant="standard" required />
 
-                                    <Button type="submit" sx={{ width: '50%', m: 1, mt: 2 }} variant="contained">Sign up</Button>
+                                    <Button onClick={handleRegisterSubmit} sx={{ width: '50%', m: 1, mt: 2 }} variant="contained">Sign up</Button>
                                 </form>
                                 <Button onClick={handleGoogleLogin} sx={{ width: '75%', m: 1, mt: 2 }} className="fb-btn " variant="outlined"> <span className='text-dark '>Connect with</span> <span><GoogleIcon /></span></Button>
                             </div>
@@ -110,11 +124,11 @@ const Login = () => {
                     <div className="main ">
                         <input type="checkbox" id="chk" aria-hidden="true" />
                         <div className="signup">
-                            <form onSubmit={handleSubmit(handleRegisterSubmit)}>
-                                <label for="chk" aria-hidden="true">Sign up</label>
-                                <input type="text" {...register("name")} placeholder="User name" required />
-                                <input type="email" {...register("email")} placeholder="Email" required />
-                                <input type="password" {...register("password")} placeholder="Password" required />
+                            <form onSubmit={handleRegisterSubmit}>
+                                <label htmlFor="chk" aria-hidden="true">Sign up</label>
+                                <input type="text" name="name" onChange={(e) => setNewName(e.target.value)} placeholder="User name" required />
+                                <input type="email" name="email" onChange={(e) => setNewEmail(e.target.value)} placeholder="Email" required />
+                                <input type="password" name="password" onChange={(e) => setNewPass(e.target.value)} placeholder="Password" required />
                                 <button type='submit'>Sign up</button>
                             </form>
                             <Button onClick={handleGoogleLogin} sx={{ width: '75%', m: 1, mt: 2 }} className="fb-btn " variant="outlined"> <span className='text-dark '>Connect with</span> <span><GoogleIcon /></span></Button>
@@ -122,7 +136,7 @@ const Login = () => {
 
                         <div className="login">
                             <form onSubmit={handleSubmit(handleLoginSubmit)}>
-                                <label for="chk" aria-hidden="true">Login</label>
+                                <label htmlFor="chk" aria-hidden="true">Login</label>
                                 <input type="email"   {...register("email")} placeholder="Email" required />
                                 <input type="password"  {...register("password")} placeholder="Password" required />
                                 <button type='submit'>Login</button>

@@ -12,60 +12,81 @@ import SwiperCore, {
     Pagination,
 } from "swiper/core";
 import TestimonialInfo from '../TestimonialInfo/TestimonialInfo';
+import Swal from 'sweetalert2';
 
 
-const customerReview = [
-    {
-        name: 'faisal',
-        id: 1,
-        ratings: '',
-        email: 'abcdefg@gmail.com',
-        image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
-        message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
-    },
-    {
-        name: 'faisal',
-        id: 2,
-        ratings: '',
-        email: 'abcdefg@gmail.com',
-        image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
-        message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
-    },
-    {
-        name: 'faisal',
-        id: 3,
-        ratings: '',
-        email: 'abcdefg@gmail.com',
-        image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
-        message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
-    },
-    {
-        name: 'faisal',
-        id: 4,
-        ratings: '',
-        email: 'abcdefg@gmail.com',
-        image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
-        message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
-    },
-    {
-        name: 'faisal',
-        id: 5,
-        ratings: '',
-        email: 'abcdefg@gmail.com',
-        image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
-        message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
-    },
-    {
-        name: 'faisal',
-        id: 6,
-        ratings: '',
-        email: 'abcdefg@gmail.com',
-        image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
-        message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
-    },
-];
+// const customerReview = [
+//     {
+//         name: 'faisal',
+//         id: 1,
+//         ratings: '',
+//         email: 'abcdefg@gmail.com',
+//         image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
+//         message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
+//     },
+//     {
+//         name: 'faisal',
+//         id: 2,
+//         ratings: '',
+//         email: 'abcdefg@gmail.com',
+//         image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
+//         message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
+//     },
+//     {
+//         name: 'faisal',
+//         id: 3,
+//         ratings: '',
+//         email: 'abcdefg@gmail.com',
+//         image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
+//         message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
+//     },
+//     {
+//         name: 'faisal',
+//         id: 4,
+//         ratings: '',
+//         email: 'abcdefg@gmail.com',
+//         image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
+//         message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
+//     },
+//     {
+//         name: 'faisal',
+//         id: 5,
+//         ratings: '',
+//         email: 'abcdefg@gmail.com',
+//         image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
+//         message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
+//     },
+//     {
+//         name: 'faisal',
+//         id: 6,
+//         ratings: '',
+//         email: 'abcdefg@gmail.com',
+//         image: 'https://i.ibb.co/3d681NY/austin-distel-7b-Mdi-Iqz-J4-unsplash.png',
+//         message: 'Messages is a simple, helpful messaging app that keeps you connected with the people who matter most. Text anyone from anywhere across devices.'
+//     },
+// ];
 
 const Testimonials = () => {
+    const [allReviews, setAllReviews] = React.useState([]);
+
+    React.useEffect(() => {
+        fetch('https://mysterious-waters-68327.herokuapp.com/review')
+            .then(res => res.json())
+            .then(data => {
+                setAllReviews(data);
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error} `,
+
+                })
+            })
+    }, []);
+
+
+
     SwiperCore.use([EffectCoverflow, Autoplay, Navigation, Pagination]);
     return (
         <div id="testimonial" className="  bg-light reviews-section" style={{ padding: '90px 0' }}>
@@ -108,10 +129,10 @@ const Testimonials = () => {
                         navigation={true}
                     >
 
-                        {customerReview.map((review) => {
+                        {allReviews.map((review) => {
                             return (
                                 <SwiperSlide className="swiper-slide mb-5"
-                                    key={review.id}>
+                                    key={review._id}>
                                     <TestimonialInfo review={review}></TestimonialInfo>
                                 </SwiperSlide>
                             );

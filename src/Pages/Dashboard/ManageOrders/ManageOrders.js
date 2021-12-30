@@ -52,25 +52,23 @@ const ManageOrders = () => {
             .then(res => res.data && Swal.fire({
                 position: 'top-middle',
                 icon: 'success',
-                title: `Set to ${status}`,
+                title: `${status}`,
                 showConfirmButton: false,
                 timer: 3000
             }))
             .catch(error => Swal.fire({
-                position: 'top-middle',
                 icon: 'error',
-                title: `Set to ${error}`,
+                title: ` ${error}`,
                 showConfirmButton: false,
                 timer: 3000
             }));
     }
 
-
     return (
         <div>
             <div className="container">
                 <h1 className="fw-bold text-secondary">MANAGE ORDERS</h1>
-                <Paper elevation={5} sx={{ width: '100%', overflow: '' }}>
+                <Paper elevation={5}>
                     <TableContainer sx={{ backgroundColor: '', borderRadius: '20px' }}>
                         <Table stickyHeader aria-label="sticky table">
                             <TableHead>
@@ -97,13 +95,13 @@ const ManageOrders = () => {
                                         <TableCell className="fw-bold fs-5 text-info bg-light" align="left">
 
                                             <FormControl fullWidth>
-                                                <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                                <InputLabel variant="standard" htmlhtmlFor="uncontrolled-native">
                                                     status
                                                 </InputLabel>
                                                 <NativeSelect
                                                     className={row.status === "pending" ? "btn btn-danger" : row.status === "on going" ? "btn btn-info" : row.status === "approve" ? "btn btn-success" : "btn btn-danger"}
                                                     defaultValue={row.status}
-                                                    onChange={e => handleStatusChange(row.id, e.target.value)}
+                                                    onChange={e => handleStatusChange(row._id, e.target.value)}
                                                 >
                                                     <option className="bg-white text-muted">pending</option>
                                                     <option className="bg-white text-muted">on going</option>
