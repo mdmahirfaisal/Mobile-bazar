@@ -4,13 +4,6 @@
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-/* .first-form input, button {
-  border: none;
-  outline: none;
-  background: none;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-} */
-
 .tip {
   font-size: 20px;
   margin: 40px auto 50px;
@@ -77,7 +70,7 @@
   top: 0;
   width: 900px;
   height: 100%;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/sections-3.jpg");
+  background-image: url("https://i.ibb.co/kqBRP1J/login.png");
   background-size: cover;
   transition: transform 1.2s ease-in-out;
 }
