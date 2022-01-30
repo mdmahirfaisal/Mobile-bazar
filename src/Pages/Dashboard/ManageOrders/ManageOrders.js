@@ -95,7 +95,7 @@ const ManageOrders = () => {
                                         <TableCell className="fw-bold fs-5 text-info bg-light" align="left">
 
                                             <FormControl fullWidth>
-                                                <InputLabel variant="standard" htmlhtmlFor="uncontrolled-native">
+                                                <InputLabel variant="standard" htmlFor="uncontrolled-native">
                                                     status
                                                 </InputLabel>
                                                 <NativeSelect
