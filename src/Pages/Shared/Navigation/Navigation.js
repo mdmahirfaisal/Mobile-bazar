@@ -84,7 +84,7 @@ const Navigation = () => {
 
                     <Navbar.Collapse id="responsive-navbar-nav" className={isCollapsed}>
                         <Nav className="ml-auto">
-                            <Nav.Link as={HashLink} to="/home#home" className="mr-md-5" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
+                            <Nav.Link as={HashLink} to="/home#home" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
                             <Nav.Link as={HashLink}
                                 to="/home#parts"
                                 className="me-md-2" active>
@@ -141,7 +141,7 @@ const Navigation = () => {
                                     className='mb-2'>
                                     <Button className='py-1 px-5' variant='contained' color='secondary'>Login</Button>
                                 </Nav.Link> :
-                                    <Nav.Link as={HashLink} to="/login" className='login-button text-center mx-auto mb-3'>Login </Nav.Link>
+                                    <Nav.Link as={HashLink} to="/login" className='l text-center mx-auto mb-3'><Button variant='contained' sx={{ paddingY: '2px', marginBottom: '-10px' }} color='secondary'>Login</Button> </Nav.Link>
                             }
 
                         </Nav>

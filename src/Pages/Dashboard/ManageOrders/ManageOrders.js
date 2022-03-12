@@ -69,15 +69,15 @@ const ManageOrders = () => {
             <div className="container">
                 <h1 className="fw-bold text-secondary">MANAGE ORDERS</h1>
                 <Paper elevation={5}>
-                    <TableContainer sx={{ backgroundColor: '', borderRadius: '20px', height: "700px", }}>
+                    <TableContainer sx={{ backgroundColor: '', borderRadius: '20px' }}>
                         <Table stickyHeader aria-label="sticky table" className='pb-3'>
                             <TableHead>
-                                <TableRow>
-                                    <TableCell style={tableStyle} align="left">Image</TableCell>
-                                    <TableCell style={tableStyle} align="left">Name</TableCell>
-                                    <TableCell style={tableStyle} align="left">Product</TableCell>
-                                    <TableCell style={tableStyle} align="left">$ Price</TableCell>
-                                    <TableCell align="left">Status</TableCell>
+                                <TableRow >
+                                    <TableCell sx={{ textAlign: 'center' }} style={tableStyle} align="left">Image</TableCell>
+                                    <TableCell sx={{ textAlign: 'center' }} style={tableStyle} align="left">Name</TableCell>
+                                    <TableCell sx={{ textAlign: 'center' }} style={tableStyle} align="left">Product</TableCell>
+                                    <TableCell sx={{ textAlign: 'center' }} style={tableStyle} align="left">$ Price</TableCell>
+                                    <TableCell sx={{ textAlign: 'center' }} align="left">Status</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -86,7 +86,7 @@ const ManageOrders = () => {
                                         key={row._id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell style={tableStyle} align="left"><img src={row?.img} alt="product img" className="" style={{ height: '50px' }} /></TableCell>
+                                        <TableCell style={tableStyle} align="center"><img src={row?.img} alt="product img" style={{ height: '60px' }} /></TableCell>
                                         <TableCell className=" fs-6" style={tableStyle} component="th" scope="row">
                                             {row?.email}
                                         </TableCell>
@@ -105,8 +105,6 @@ const ManageOrders = () => {
                                                     <option className="bg-white text-muted">pending</option>
                                                     <option className="bg-white text-muted">on going</option>
                                                     <option className="bg-white text-muted">approve</option>
-
-
                                                 </NativeSelect>
                                             </FormControl>
                                         </TableCell>

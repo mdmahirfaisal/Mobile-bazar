@@ -46,10 +46,10 @@ const Login = () => {
 
     const toastContent = (
         <div className="container d-flex justify-content-center" style={{ position: 'relative' }}>
-            {!user.email && <Toast style={{ position: 'absolute', top: 5 }} onClose={() => setShow(false)} show={show} delay={15000} autohide>
+            {!user.email && <Toast style={{ position: 'absolute', backgroundColor: 'white' }} onClose={() => setShow(false)} show={show} delay={15000} autohide>
                 <Toast.Header><strong className="me-auto">Important Info</strong></Toast.Header>
                 <Toast.Body className="text-center">
-                    Use this account to <br /> Sign in as an admin to test the admin panel <br /> Or login with a different account as a user.
+                    <h6 className='text-start'>Use this account to  Sign in as an admin<br /> to test the admin panel <br /> Or login with a different account as a user.</h6>
                 </Toast.Body>
             </Toast>}
         </div>
@@ -65,7 +65,7 @@ const Login = () => {
             {toastContent}
             {isDesktop &&
                 <div className="first-form ">
-                    <h5 className='text-secondary py-5 fw-bold'>Please Login or Registration</h5>
+                    <h5 className='text-secondary mt-4 py-5 fw-bold'>Please Login or Registration</h5>
                     <div className="cont shadow" style={{ borderRadius: '20px' }}>
                         <div className="form sign-in">
                             <h2>Welcome back,</h2>

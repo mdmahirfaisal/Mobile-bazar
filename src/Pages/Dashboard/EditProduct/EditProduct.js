@@ -4,16 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2'
-import TextField from '@mui/material/TextField';
 import { useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import axios from 'axios';
 
 
 const EditProduct = () => {
     const { id } = useParams();
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
     const [productImg, setProductImg] = useState(null)
     const [product, setProduct] = useState({})
     const [productImgName, setProductImgName] = useState("Image not selected")
@@ -83,7 +81,7 @@ const EditProduct = () => {
         }
         data.id = product?._id
 
-        axios.put('http://localhost:5000/updateProduct', data)
+        axios.put('https://mysterious-waters-68327.herokuapp.com/updateProduct', data)
             .then(res => {
                 console.log(res)
                 Swal.fire({
@@ -115,7 +113,7 @@ const EditProduct = () => {
 
 
             <div className=" py-3" >
-                <form name="myform" novalidate onSubmit={handleSubmit(onSubmit)} className=" row form-control border-0 bg-white shadow  py-4 px-3" style={{ maxWidth: '700px', margin: 'auto', borderRadius: '20px' }}>
+                <form name="myform" noValidate onSubmit={handleSubmit(onSubmit)} className=" row form-control border-0 bg-white shadow  py-4 px-3" style={{ maxWidth: '700px', margin: 'auto', borderRadius: '20px' }}>
                     <Form.Label className="text-start mt-2">Product name</Form.Label>
                     <input className="col-12 "
                         rows={1}

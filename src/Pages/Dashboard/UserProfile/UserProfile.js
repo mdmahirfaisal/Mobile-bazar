@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import useFirebase from '../../../hooks/useFirebase';
 import './UserProfile.css';
 import profileImg from './image/profile.jpg';
+import { Button } from '@mui/material';
 
 
 
@@ -44,7 +45,7 @@ const UserProfile = () => {
                         <div className="content">
                             <h3 className='m-0 p-0 text-secondary fw-bold'>{user?.displayName || "User name"}</h3>
                             <h6 className='text-secondary mb-5 fw-light'>{user?.email || "User email"}</h6>
-                            <button onClick={handleLogout} className='login-button text-center mx-auto mb-3'>Logout</button>
+                            <Button variant='contained' color='secondary' onClick={handleLogout} className='mx-auto w-100 mb-3'>Logout</Button>
                         </div>
                     </div>
                 </div>
