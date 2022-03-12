@@ -61,7 +61,7 @@ const Contact = () => {
 
                                 <li className="list-item"><i className="fa fa-envelope text-danger fa-2x me-"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=rjmahir.faisal@gmail.com" target="_blank" rel='noreferrer' className='text-decoration-none'><span className="contact-text gmail ms-3">rjmahir.faisal@gmail.com</span></a></i></li>
 
-                                <li className="list-item"><i className="fa fa-map-marker text-danger fa-2x me-"><span className="contact-text place ms-3"><a className='contact-text' href="https://www.google.com/maps/search/Developers+Area/@24.4282908,88.6065141,21z/data=!4m7!2m6!3m5!1sDevelopers+Area!2s24.428376,+88.606569!4m2!1d88.6065689!2d24.428376" target="_blank" rel='noreferrer'>Rajshahi, Bangladesh</a></span></i></li>
+                                <li className="list-item"><i className="fa fa-map-marker text-danger fa-2x me-"><span className="contact-text place ms-3"><a className='contact-text' href="https://www.google.com/maps/place/%E0%A6%AC%E0%A6%BE%E0%A7%9F%E0%A6%BE+%E0%A6%AC%E0%A6%BE%E0%A6%9C%E0%A6%BE%E0%A6%B0/@24.4276771,88.6098213,16.5z/data=!4m5!3m4!1s0x39fbeddebd9c6bd9:0xa1b9ee92ceddb7c5!8m2!3d24.427867!4d88.6108135" target="_blank" rel='noreferrer'>Rajshahi, Bangladesh</a></span></i></li>
                             </ul>
                             <hr />
                             <ul className="social-media-list" >
@@ -71,13 +71,13 @@ const Contact = () => {
 
                                 <a href={`https://www.facebook.com/profile.php?id=100069936932811`} target="_blank" rel="noopener noreferrer"><li><i className="fab fa-facebook contactIcon"></i></li></a>
 
-                                <a href={`https://www.linkedin.com/in/mahir-faisal/`} target="_blank" rel="noopener noreferrer"> <li><i className="fab fa-linkedin-in  contactIcon"></i></li></a>
+                                <a href={`https://www.linkedin.com/in/mahir-faisal/`} target="_blank" rel="noopener noreferrer"><li><i className="fab fa-linkedin-in contactIcon"></i></li></a>
 
                             </ul>
                             <hr />
                             <div className="copyright text-secondary">&copy; ALL OF THE RIGHTS RESERVED</div>
-                        </div></Fade>
-
+                        </div>
+                    </Fade>
                 </div>
 
             </div>
