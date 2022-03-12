@@ -30,7 +30,6 @@ const Login = () => {
 
     //// handle register
     const handleRegisterSubmit = () => {
-        // registerUser(registerData.email, registerData.password, registerData.name, navigate)
         registerUser(newEmail, newPass, newName, navigate)
     }
 
@@ -40,43 +39,46 @@ const Login = () => {
         loginUser(data.email, data.password, location, navigate)
     };
 
-
     const imageButton = () => {
         document.querySelector('.cont').classList.toggle('s--signup');
     }
     const [show, setShow] = useState(true);
+
+    const toastContent = (
+        <div className="container d-flex justify-content-center" style={{ position: 'relative' }}>
+            {!user.email && <Toast style={{ position: 'absolute', top: 5 }} onClose={() => setShow(false)} show={show} delay={15000} autohide>
+                <Toast.Header><strong className="me-auto">Important Info</strong></Toast.Header>
+                <Toast.Body className="text-center">
+                    Use this account to <br /> Sign in as an admin to test the admin panel <br /> Or login with a different account as a user.
+                </Toast.Body>
+            </Toast>}
+        </div>
+    )
+
+
+    const admin = "admin@gmail.com";
+    const password = "123456";
+
     return (
         <>
             <Navigation></Navigation>
-            <div className="container d-flex justify-content-center">
-                {!user.email && <Toast className="" onClose={() => setShow(false)} show={show} delay={15000} autohide>
-                    <Toast.Header>
-                        {/* <img src="" className="rounded mr-2" alt="Info" /> */}
-                        <strong className="mr-auto">Important Info</strong>
-                    </Toast.Header>
-                    <Toast.Body className="text-center">
-                        Use this account to <br /> Sign in as an admin to test the admin panel <br /> Or login with a different account as a user.
-                    </Toast.Body>
-                </Toast>}
-            </div>
-
+            {toastContent}
             {isDesktop &&
-
-                <div className="first-form">
-                    <p className="tip mt-5 pt-5">Please click on button in image container</p>
-                    <div className="cont bg-light shadow " style={{ borderRadius: '20px' }}>
+                <div className="first-form ">
+                    <h5 className='text-secondary py-5 fw-bold'>Please Login or Registration</h5>
+                    <div className="cont shadow" style={{ borderRadius: '20px' }}>
                         <div className="form sign-in">
                             <h2>Welcome back,</h2>
                             <form onSubmit={handleSubmit(handleLoginSubmit)} className='mb-3'>
-                                <TextField sx={{ width: '50%', m: 1 }}
-                                    defaultValue="admin@gmail.com"
-                                    name="email" type="email" {...register("email")} label="Your Email" variant="standard" required />
+                                <TextField sx={{ width: '50%', m: 1, textAlign: 'center' }}
+                                    defaultValue={admin}
+                                    type="email" {...register("email")} label="Your Email" variant="standard" />
 
-                                <TextField sx={{ width: '50%', m: 1 }} className="mb-3"
-                                    defaultValue="123456"
-                                    name="password" {...register("password")} label="Your Password"
+                                <TextField sx={{ width: '50%', m: 1, textAlign: 'center' }} className="mb-3"
+                                    defaultValue={password}
+                                    {...register("password")} label="Your Password"
                                     type="password"
-                                    variant="standard" required />
+                                    variant="standard" />
 
                                 <Button type="submit" sx={{ width: '50%', m: 1, mt: 2 }} variant="contained">Login</Button>
                             </form>
@@ -137,8 +139,8 @@ const Login = () => {
                         <div className="login">
                             <form onSubmit={handleSubmit(handleLoginSubmit)}>
                                 <label htmlFor="chk" aria-hidden="true">Login</label>
-                                <input type="email"   {...register("email")} placeholder="Email" required />
-                                <input type="password"  {...register("password")} placeholder="Password" required />
+                                <input type="email" defaultValue="admin@gmail.com"   {...register("email")} placeholder="Email" required />
+                                <input type="password" defaultValue="123456"  {...register("password")} placeholder="Password" required />
                                 <button type='submit'>Login</button>
                             </form>
                             <Button onClick={handleGoogleLogin} sx={{ width: '75%', m: 1, mt: 2 }} className="fb-btn " variant="outlined"> <span className='text-dark '>Connect with</span> <span><GoogleIcon /></span></Button>

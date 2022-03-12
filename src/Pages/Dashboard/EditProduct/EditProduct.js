@@ -15,7 +15,8 @@ const EditProduct = () => {
     const { id } = useParams();
     const { register, handleSubmit, reset } = useForm();
     const [productImg, setProductImg] = useState(null)
-    const [product, setProduct] = useState()
+    const [product, setProduct] = useState({})
+    const [productImgName, setProductImgName] = useState("Image not selected")
     console.log(product)
 
 
@@ -38,7 +39,7 @@ const EditProduct = () => {
     // upload image
     const handleImgUpload = async e => {
         const imageData = new FormData();
-        console.log(e.target.files[0]);
+        setProductImgName(e.target.files[0].name);
         imageData.set('key', 'b1329658ac9cd12416e1b24f8e686347');
         await imageData.append('image', e.target.files[0])
 
@@ -54,35 +55,44 @@ const EditProduct = () => {
             });
     };
     const onSubmit = productData => {
-        const data = {
-            name: productData.name,
-            price: productData.price,
-            description: productData.description,
-            img: productImg
-        };
+        console.log(productData);
+        let data = {}
+        if (productImg) {
+            data.img = productImg;
+        }
+        else {
+            data.img = product.img;
+        }
+        if (productData.name) {
+            data.name = productData.name
+        }
+        else {
+            data.name = product.name
+        }
+        if (productData.price) {
+            data.price = productData.price
+        }
+        else {
+            data.price = product.price
+        }
+        if (productData.description) {
+            data.description = productData.description
+        }
+        else {
+            data.description = product.description
+        }
+        data.id = product?._id
 
-        reset()
-
-        axios.post('https://mysterious-waters-68327.herokuapp.com/products', data)
+        axios.put('http://localhost:5000/updateProduct', data)
             .then(res => {
-                console.log(res);
-
-                if (res.data.insertedId) {
-                    Swal.fire({
-                        position: 'top-center',
-                        icon: 'success',
-                        title: 'New product added Successfully',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                }
-                else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Order placed Canceled!',
-                    })
-                }
+                console.log(res)
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'This product edit Successfully',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
             })
             .catch(error => {
                 Swal.fire({
@@ -105,41 +115,42 @@ const EditProduct = () => {
 
 
             <div className=" py-3" >
-                <form onSubmit={handleSubmit(onSubmit)} className=" row form-control border-0 bg-white shadow  py-4 px-3" style={{ maxWidth: '700px', margin: 'auto', borderRadius: '20px' }}>
+                <form name="myform" novalidate onSubmit={handleSubmit(onSubmit)} className=" row form-control border-0 bg-white shadow  py-4 px-3" style={{ maxWidth: '700px', margin: 'auto', borderRadius: '20px' }}>
+                    <Form.Label className="text-start mt-2">Product name</Form.Label>
+                    <input className="col-12 "
+                        rows={1}
+                        type="text"
+                        placeholder="Product Name"
+                        defaultValue={product.name}
+                        {...register("name")} />
 
-                    <TextField className="col-12 col-md-5 me-md-2"
-                        label="Product Name"
-                        required
-                        // defaultValue={name}
-                        {...register("name")}
-                        variant="standard" />
+                    <Form.Label className="text-start mt-2">Product price</Form.Label>
+                    <input className="col-12"
+                        rows={1}
+                        placeholder="Product Price"
+                        defaultValue={product.price}
+                        type="text" {...register("price")}
+                    />
 
-
-                    <TextField className="col-12 col-md-5 ms-md-2"
-                        label="Product Price"
-                        required
-
-                        type="number" {...register("price")}
-                        variant="standard" />
-
-                    <Form.Label className="text-start  mt-3">Product image</Form.Label>
-                    <Button type="submit" variant="outlined" onClick={uploadFile} className=" w-25 justify-self-start d-flex   send-button">Upload image</Button>
-                    <TextField id='productImg'
-                        className="col-12 col-md-10"
-                        hidden
-                        label="Upload Image"
-                        type="file" accept="image/*" onChange={handleImgUpload} required
-                        variant="standard" />
+                    <div className='d-flex align-items-center justify-content-evenly mt-3'>
+                        <div>
+                            <Button variant="outlined" onClick={uploadFile} className="send-button">Upload image</Button>
+                        </div>
+                        <input id='productImg' style={{ display: 'none' }}
+                            className="col-12 col-md-10"
+                            name='image'
+                            type="file" accept="image/*" onChange={handleImgUpload} />
+                        <p className="text-start  mt-3">{productImgName}</p>
+                    </div>
 
                     <Form.Label className="text-start  mt-4">Description</Form.Label>
-                    <TextareaAutosize
-                        aria-label="minimum height"
-                        minRows={5}
-                        defaultValue={product?.description}
+                    <textarea aria-label="minimum height"
+                        rows={8}
+                        defaultValue={product.description}
                         placeholder="Description"
-                        className="col-12 col-md-12 " style={{ borderRadius: '5px', width: '100%' }}  {...register("description", { required: true })}
+                        className="col-12 col-md-12 " style={{ borderRadius: '5px', width: '100%' }}  {...register("description")}
                     />
-                    <Button type="submit" variant="contained" className=" w-100  rounded-pill">Update product</Button>
+                    <Button type="submit" variant="contained" className=" w-100  rounded-pill" name="button">Update product</Button>
 
                 </form>
             </div>

@@ -14,7 +14,7 @@ const Footer = () => {
                                     <i className="fas fa-map-marker-alt"></i>
                                     <div className="cta-text">
                                         <h4>Find us</h4>
-                                        <span>SCIC Team Form Programming Hero</span>
+                                        <span><a className='contact-text' href="https://www.google.com/maps/search/Developers+Area/@24.4282908,88.6065141,21z/data=!4m7!2m6!3m5!1sDevelopers+Area!2s24.428376,+88.606569!4m2!1d88.6065689!2d24.428376" target="_blank" rel='noreferrer'>Rajshahi, Bangladesh</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@ const Footer = () => {
                                     <i className="fas fa-phone"></i>
                                     <div className="cta-text">
                                         <h4>Call us</h4>
-                                        <span>+880 01928646555</span>
+                                        <span><a className='contact-text' href="tel:+8801928646555">01928646555</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@ const Footer = () => {
                                     <i className="far fa-envelope-open"></i>
                                     <div className="cta-text">
                                         <h4>Mail us</h4>
-                                        <span>rjmahir.faisal@gmail.com</span>
+                                        <span><a className='contact-text' href="https://mail.google.com/mail/?view=cm&fs=1&to=rjmahir.faisal@gmail.com" target="_blank" rel='noreferrer'>rjmahir.faisal@gmail.com</a></span>
                                     </div>
                                 </div>
                             </div>
@@ -50,9 +50,9 @@ const Footer = () => {
                                     </div>
                                     <div className="footer-social-icon">
                                         <span>Follow us</span>
-                                        <HashLink to="/home#home"><i className="fab fa-facebook-f facebook-bg"></i></HashLink>
-                                        <HashLink to="/home#home"><i className="fab fa-twitter twitter-bg"></i></HashLink>
-                                        <HashLink to="/home#home"><i className="fab fa-google-plus-g google-bg"></i></HashLink>
+                                        <a href={`https://www.facebook.com/profile.php?id=100069936932811`} target="_blank" rel="noopener noreferrer" className="foot-link" ><i className="fab fa-facebook-f facebook-bg"></i></a>
+                                        <a href={`https://github.com/mdmahirfaisal`} target="_blank" rel="noopener noreferrer" className="foot-link"><i className="fab fa-github twitter-bg"></i></a>
+                                        <a href={`https://drive.google.com/file/d/1IWDXgsTltXLd81c202tLphDiYI-JgIIW/view?usp=sharing`} target="_blank" rel="noopener noreferrer" className="foot-link"><i className="fab fa-google-plus-g google-bg"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -63,15 +63,9 @@ const Footer = () => {
                                     </div>
                                     <ul className='ul-link'>
                                         <li><HashLink to="/home#home">Home</HashLink></li>
-                                        <li><HashLink to="/home#home">about</HashLink></li>
-                                        <li><HashLink to="/home#home">services</HashLink></li>
-                                        <li><HashLink to="/home#home">portfolio</HashLink></li>
-                                        <li><HashLink to="/home#home">Contact</HashLink></li>
-                                        <li><HashLink to="/home#home">About us</HashLink></li>
-                                        <li><HashLink to="/home#home">Our Services</HashLink></li>
-                                        <li><HashLink to="/home#home">Expert Team</HashLink></li>
-                                        <li><HashLink to="/home#home">Contact us</HashLink></li>
-                                        <li><HashLink to="/home#home">Latest News</HashLink></li>
+                                        <li><HashLink to="/products">Our Services</HashLink></li>
+                                        <li><HashLink to="/home#contact">Contact us</HashLink></li>
+                                        <li><a href={`https://mahirfaisalportfolio.web.app`} target="_blank" rel="noopener noreferrer" className="foot-link">portfolio</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -99,17 +93,14 @@ const Footer = () => {
                         <div className="row">
                             <div className="col-xl-6 col-lg-6 text-center text-lg-left">
                                 <div className="copyright-text">
-                                    <p>Copyright &copy; 2018, All Right Reserved <HashLink to="/home#home">Device Wala</HashLink></p>
+                                    <p>Copyright &copy; 2018, All Right Reserved <HashLink to="/home#home">Mobile Bazar</HashLink></p>
                                 </div>
                             </div>
                             <div className="col-xl-6 col-lg-6 d-none d-lg-block text-right">
                                 <div className="footer-menu">
                                     <ul className='ul-link'>
                                         <li><HashLink to="/home#home">Home</HashLink></li>
-                                        <li><HashLink to="/home#home">Terms</HashLink></li>
-                                        <li><HashLink to="/home#home">Privacy</HashLink></li>
-                                        <li><HashLink to="/home#home">Policy</HashLink></li>
-                                        <li><HashLink to="/home#home">Contact</HashLink></li>
+                                        <li><HashLink to="/home#contact">Contact</HashLink></li>
                                     </ul>
                                 </div>
                             </div>

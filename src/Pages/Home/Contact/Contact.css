@@ -117,7 +117,7 @@
   }
   
   .social-media-list li:hover {
-    background-color: #fff;
+    background-color: rgb(255, 0, 0);
   }
   
   .social-media-list li:hover:after {
@@ -127,7 +127,7 @@
   }
   
   .social-media-list li:hover a {
-    color: rgb(89, 28, 0);
+    color: rgb(255, 81, 0);
   }
   
   .copyright {

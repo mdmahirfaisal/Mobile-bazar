@@ -6,6 +6,7 @@ import useFirebase from '../../../hooks/useFirebase';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import useMediaQuery from '../useMediaQuery/useMediaQuery';
+import { Button } from '@mui/material';
 
 
 
@@ -72,18 +73,10 @@ const Navigation = () => {
                 fixed="top"
                 className={(isSticky || isCollapsed) ? "shadow-sm nav-bg-color py-2" : "py-4"}>
                 <Container>
-
                     <Navbar.Brand
                         as={HashLink} to="/"
                         className="ml-md-5"
                         style={{ color: "#3a4256", fontSize: "1.55rem" }}>
-                        {/* <img
-                        alt="Logo"
-                        src=""
-                        width="40"
-                        height="40"
-                        className="d-inline-block align-top"
-                    />{' '} */}
                         <strong>Mobile Bazar</strong>
                     </Navbar.Brand>
 
@@ -94,57 +87,50 @@ const Navigation = () => {
                             <Nav.Link as={HashLink} to="/home#home" className="mr-md-5" onClick={() => window.scrollTo(500, 0)} active>Home</Nav.Link>
                             <Nav.Link as={HashLink}
                                 to="/home#parts"
-                                className="mr-md-5" active>
+                                className="me-md-2" active>
                                 Parts
                             </Nav.Link>
                             <Nav.Link as={HashLink}
                                 to="/home#raise"
-                                className="mr-md-5" active>
+                                className="me-md-2" active>
                                 Raise
                             </Nav.Link>
                             <Nav.Link as={HashLink}
                                 to="/home#products"
-                                className="mr-md-5" active>
+                                className="me-md-2" active>
                                 Products
                             </Nav.Link>
                             <Nav.Link as={HashLink}
                                 to="/home#details"
-                                className="mr-md-5" active>
+                                className="me-md-2" active>
                                 Info
                             </Nav.Link>
                             <Nav.Link as={HashLink}
                                 to="/home#testimonial"
-                                className="mr-md-5" active>
+                                className="me-md-2" active>
                                 Reviews
                             </Nav.Link>
                             <Nav.Link as={HashLink}
                                 to="/home#contact"
-                                className="mr-md-5" active>
+                                className="me-md-2" active>
                                 Contact Us
                             </Nav.Link>
-                            {user.email && <Nav.Link
+                            <Nav.Link
                                 as={HashLink}
                                 to="/dashboard/"
-                                className="mr-md-5" active>
+                                className="me-md-2" active>
                                 Dashboard
-                            </Nav.Link>}
+                            </Nav.Link>
                         </Nav>
                         <Nav className='ms-auto '>
                             {user.email ? <div ref={ref}>
                                 <h1 onClick={handleClick} style={{ cursor: 'pointer' }}><i className="fas fa-user-circle"></i></h1>
-
-                                <Overlay
-                                    show={show}
-                                    target={target}
-                                    placement="bottom"
-                                    container={ref}
-                                    containerPadding={20}
-                                >
+                                <Overlay show={show} target={target} placement="bottom" container={ref} containerPadding={20}>
                                     <Popover id="popover-contained" className='border-0 bg-light shadow'>
-                                        <Popover.Header className='border-0' > <h5 className='text-center text-primary'>{user.displayName}</h5></Popover.Header>
+                                        <Popover.Header className='border-0' > <h5 className='text-center'>{user.displayName}</h5></Popover.Header>
                                         <Popover.Body>
-                                            <p>{user.email}</p>
-                                            <button onClick={handleLogout} className='btn btn-outline-danger px-5 w-100 py-0 rounded-pill text-center mx-auto mb-3'>Logout</button>
+                                            <h6>{user.email}</h6>
+                                            <Button variant='outlined' color='secondary' onClick={handleLogout} className='w-100 py-0 text-center mx-auto'>Logout</Button>
                                         </Popover.Body>
                                     </Popover>
                                 </Overlay>
@@ -152,14 +138,10 @@ const Navigation = () => {
                                 :
                                 isMobile ? <Nav.Link as={HashLink}
                                     to="/login"
-                                    className=' btn btn-outline-danger py-0 px-3 rounded-pill text-center mx-auto mb-2'>
-                                    Login
+                                    className='mb-2'>
+                                    <Button className='py-1 px-5' variant='contained' color='secondary'>Login</Button>
                                 </Nav.Link> :
-                                    <Nav.Link as={HashLink}
-                                        to="/login"
-                                        className='login-button text-center mx-auto mb-3'>
-                                        Login
-                                    </Nav.Link>
+                                    <Nav.Link as={HashLink} to="/login" className='login-button text-center mx-auto mb-3'>Login </Nav.Link>
                             }
 
                         </Nav>
@@ -167,9 +149,6 @@ const Navigation = () => {
                 </Container>
             </Navbar>
             {isSticky && <Navbar
-                collapseOnSelect
-                expand="lg"
-                variant="light"
                 fixed="bottom"
             >
                 <Nav.Link className='up-arrow fs-5  rounded-pill text-decoration-none ms-auto me-4 mb-5' as={HashLink} to="/home#home"><i className="fas fa-arrow-up"></i></Nav.Link>

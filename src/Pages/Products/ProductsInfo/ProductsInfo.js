@@ -23,11 +23,11 @@ const ProductsInfo = ({ product }) => {
                     </div>
 
                     <div className="product-container-lower">
-                        <img src={img} style={{ maxHeight: '', marginTop: '-100px' }} alt="honda png" className="image" />
+                        <img src={img} style={{ marginTop: '-100px' }} alt="honda png" className="image" />
                         <ul className="features-list img-fluid">
                             <li>{name} </li>
                             <li>$ {price} </li>
-                            <li> <small>{description.slice(0, 40)}</small></li>
+                            <li> <small>{description?.slice(0, 40)}</small></li>
                         </ul>
                     </div>
                 </div>

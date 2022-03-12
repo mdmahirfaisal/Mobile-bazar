@@ -23,14 +23,14 @@
    }
 
    .up-arrow{
-     background-color: rgb(123, 209, 240);
-     color: darkblue;
+     background-color: rgb(51, 0, 0);
+     color: rgb(255, 255, 255);
      font-size: 15px;
      transition: all 0.8s;
    }
    .up-arrow:hover{
-     background-color: rgb(44, 44, 44);
-     color: lightcyan;
+     background-color: rgb(145, 5, 5);
+     color: rgb(255, 255, 255);
      font-size: 25px;
    }
 

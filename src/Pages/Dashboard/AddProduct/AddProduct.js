@@ -13,22 +13,26 @@ const AddProduct = () => {
     const [uploading, setUploading] = useState(false);
     const { register, handleSubmit, reset } = useForm();
     const [productImg, setProductImg] = useState(null)
+    const [productImgName, setProductImgName] = useState("Image not be selected")
 
     const handleImgUpload = async e => {
         const imageData = new FormData();
-        console.log(e.target.files[0]);
+        setProductImgName(e.target.files[0].name);
         imageData.set('key', 'b1329658ac9cd12416e1b24f8e686347');
         await imageData.append('image', e.target.files[0])
 
         axios.post('https://api.imgbb.com/1/upload',
             imageData)
             .then(response => {
-                console.log(response.data.data.display_url);
-
+                // console.log(response.data.data.display_url);
                 setProductImg(response.data.data.display_url);
             })
             .catch(error => {
-                console.log(error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `${error}`,
+                })
             });
     };
     const onSubmit = productData => {
@@ -82,7 +86,7 @@ const AddProduct = () => {
             {uploading && <CircularProgress></CircularProgress>}
 
             <div className=" py-3" >
-                <form onSubmit={handleSubmit(onSubmit)} className=" row form-control border-0 bg-white shadow  py-4 px-3" style={{ maxWidth: '700px', margin: 'auto', borderRadius: '20px' }}>
+                <form name="myform" novalidate onSubmit={handleSubmit(onSubmit)} className=" row form-control border-0 bg-white shadow  py-4 px-3" style={{ maxWidth: '700px', margin: 'auto', borderRadius: '20px' }}>
 
                     <TextField className="col-12 col-md-5 me-md-2"
                         label="Product Name"
@@ -96,15 +100,18 @@ const AddProduct = () => {
                         required
                         type="number" {...register("price")}
                         variant="standard" />
-
-                    <Form.Label className="text-start  mt-3">Product image</Form.Label>
-                    <Button type="submit" variant="outlined" onClick={uploadFile} className=" w-25 justify-self-start d-flex   send-button">Upload image</Button>
-                    <TextField id='productImg'
-                        className="col-12 col-md-10"
-                        hidden
-                        label="Upload Image"
-                        type="file" accept="image/*" onChange={handleImgUpload} required
-                        variant="standard" />
+                    <div className='d-flex align-items-center justify-content-evenly mt-3'>
+                        <div>
+                            <Button variant="outlined" onClick={uploadFile} className="send-button">Upload image</Button>
+                        </div>
+                        <TextField id='productImg' sx={{ display: 'none' }}
+                            className="col-12 col-md-10"
+                            name='image'
+                            label="Upload Image"
+                            type="file" accept="image/*" onChange={handleImgUpload} required
+                            variant="standard" />
+                        <p className="text-start  mt-3">{productImgName}</p>
+                    </div>
 
                     <Form.Label className="text-start  mt-4">Description</Form.Label>
                     <TextareaAutosize

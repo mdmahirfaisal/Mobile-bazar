@@ -1,4 +1,3 @@
-
 .first-form{
   
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -127,17 +126,7 @@
   font-size: 15px;
   cursor: pointer;
 }
-.img__btn:after {
-  content: "";
-  z-index: 2;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #fff;
-  border-radius: 30px;
-}
+.img__btn:after {content: "";z-index: 2;position: absolute;left: 0;top: 0;width: 100%;height: 100%;border: 2px solid #fff;border-radius: 30px}
 .img__btn span {
   position: absolute;
   left: 0;
@@ -161,44 +150,7 @@
 
 .first-form h2 {
   width: 100%;
-  font-size: 26px;
   text-align: center;
-}
-
-/* .first-form label {
-  display: block;
-  width: 260px;
-  margin: 25px auto 0;
-  text-align: center;
-} */
-.first-form label span {
-  font-size: 12px;
-  color: #cfcfcf;
-  text-transform: uppercase;
-}
-
-.first-form input {
-  display: block;
-  width: 100%;
-  margin-top: 5px;
-  padding-bottom: 5px;
-  font-size: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-  text-align: center;
-}
-
-.forgot-pass {
-  margin-top: 15px;
-  text-align: center;
-  font-size: 12px;
-  color: #cfcfcf;
-}
-
-.submit {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  background: #d4af7a;
-  text-transform: uppercase;
 }
 
 .fb-btn {
@@ -225,23 +177,6 @@
 .cont.s--signup .sign-up {
   transform: translate3d(0, 0, 0);
 }
-
-.icon-link {
-  position: absolute;
-  left: 5px;
-  bottom: 5px;
-  width: 32px;
-}
-.icon-link img {
-  width: 100%;
-  vertical-align: top;
-}
-.icon-link--twitter {
-  left: auto;
-  right: 5px;
-}
-
-
 
   /* second login form  */
 

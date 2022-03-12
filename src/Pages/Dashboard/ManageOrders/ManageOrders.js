@@ -14,7 +14,8 @@ import NativeSelect from '@mui/material/NativeSelect';
 import axios from 'axios';
 
 const tableStyle = {
-    borderRight: '1px solid gray'
+    borderRight: '1px solid gray',
+    minWidth: '150px'
 }
 
 const ManageOrders = () => {
@@ -45,7 +46,6 @@ const ManageOrders = () => {
             modifiedOrders.push(order)
         })
         setAllOrders(modifiedOrders);
-
         const modifiedStatus = { id, status }
 
         axios.put('https://mysterious-waters-68327.herokuapp.com/updateOrderStatus', modifiedStatus)
@@ -69,8 +69,8 @@ const ManageOrders = () => {
             <div className="container">
                 <h1 className="fw-bold text-secondary">MANAGE ORDERS</h1>
                 <Paper elevation={5}>
-                    <TableContainer sx={{ backgroundColor: '', borderRadius: '20px' }}>
-                        <Table stickyHeader aria-label="sticky table">
+                    <TableContainer sx={{ backgroundColor: '', borderRadius: '20px', height: "700px", }}>
+                        <Table stickyHeader aria-label="sticky table" className='pb-3'>
                             <TableHead>
                                 <TableRow>
                                     <TableCell style={tableStyle} align="left">Image</TableCell>
@@ -92,14 +92,13 @@ const ManageOrders = () => {
                                         </TableCell>
                                         <TableCell className=" fs-6" style={tableStyle} align="left">{row?.name} <br /> <small className="text-dark">{new Date(row.orderTime).toDateString()}</small> </TableCell>
                                         <TableCell className="fw-bold fs-5 text-danger" style={tableStyle} align="left">$ {row?.price}</TableCell>
-                                        <TableCell className="fw-bold fs-5 text-info bg-light" align="left">
-
+                                        <TableCell className="fw-bold fs-5 text-info bg-light" style={{ minWidth: '150px' }} align="left">
                                             <FormControl fullWidth>
                                                 <InputLabel variant="standard" htmlFor="uncontrolled-native">
                                                     status
                                                 </InputLabel>
                                                 <NativeSelect
-                                                    className={row.status === "pending" ? "btn btn-danger" : row.status === "on going" ? "btn btn-info" : row.status === "approve" ? "btn btn-success" : "btn btn-danger"}
+                                                    className={row.status === "pending" ? "btn btn-danger text-white" : row.status === "on going" ? "btn btn-info text-white" : row.status === "approve" ? "btn btn-success text-white" : "btn btn-danger text-white"}
                                                     defaultValue={row.status}
                                                     onChange={e => handleStatusChange(row._id, e.target.value)}
                                                 >

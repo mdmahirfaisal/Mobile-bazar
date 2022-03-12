@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ListItem from '@mui/material/ListItem';
 import CloseIcon from '@mui/icons-material/Close';
-import { Nav, Navbar, Overlay, Popover } from 'react-bootstrap';
+import { Overlay, Popover } from 'react-bootstrap';
 import { HashLink } from 'react-router-hash-link';
 import useFirebase from '../../../hooks/useFirebase';
 import Swal from 'sweetalert2';
@@ -143,18 +143,14 @@ const DashboardHome = () => {
                             containerPadding={20}
                         >
                             <Popover id="popover-contained" className='border-0 bg-light shadow'>
-                                <Popover.Header className='border-0' > <h5 className='text-center text-primary'>{user.displayName}</h5></Popover.Header>
+                                <Popover.Header className='border-0' > <h5 className='text-center fw-bold text-danger'>{user.displayName}</h5></Popover.Header>
                                 <Popover.Body>
-                                    <p>{user.email}</p>
-                                    <button onClick={handleLogout} className='btn btn-outline-danger w-100 py-0 rounded-pill text-center mx-auto mb-3'>Logout</button>
-                                    <HashLink to="/home" className="text-decoration-none ms-auto"><Button variant='outlined' className=" px-3 w-100 py-0 rounded-pill ms-auto me-md-5">Home</Button></HashLink>
+                                    <Button variant='contained' color='secondary' onClick={handleLogout} className='w-100 py-0 mx-auto mb-3'>Logout</Button>
+                                    <HashLink to="/home" className="text-decoration-none ms-auto"><Button variant='contained' color='info' className="w-100 py-0 ms-auto">Home</Button></HashLink>
                                 </Popover.Body>
                             </Popover>
                         </Overlay>
                     </div>}
-
-
-
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -215,23 +211,14 @@ const DashboardHome = () => {
                             </ListItem>
                         </>
                     }
+                    <ListItem button>
+                        <HashLink to="/" className='text-decoration-none w-100 text-dark fw-bold'>BACK TO HOME</HashLink>
+                    </ListItem>
 
-                    <Navbar
-                        collapseOnSelect
-                        expand="lg"
-                        variant="light"
-                        fixed="bottom"
-                    >
-                        <Nav.Link className='up-arrow fs-5  rounded-pill text-decoration-none ms-3 mb-4' as={HashLink} to="/home">BACK TO HOME</Nav.Link>
-                    </Navbar>
                 </List>
-
             </Drawer>
             <Main open={open} className="border-0" style={{ paddingTop: '20px' }}>
-                <div className="home-background">
-                    <Outlet />
-                </div>
-
+                <Outlet />
             </Main>
         </Box>
     );

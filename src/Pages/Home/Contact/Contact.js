@@ -34,14 +34,12 @@ const Contact = () => {
                                 {...register("name")} required
                                 label="NAME" variant="standard" />
                         </Box>
-
                         <Box sx={{ display: 'flex', alignItems: 'flex-end', backgroundColor: 'white', marginBottom: '10px', borderRadius: '10px', padding: '0px 5px' }}>
                             <Email className='mb-2' sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
                             <TextField className="w-100 mb-2"
                                 {...register("email")} required
                                 label="EMAIL" variant="standard" />
                         </Box>
-
                         <TextareaAutosize
                             className="d-block w-100 "
                             style={{ borderRadius: '5px', width: '100%' }} rows={10} {...register("description", { required: true })}
@@ -59,23 +57,22 @@ const Contact = () => {
                         <div className="direct-contact-container col-sm-12 col-md-6">
                             <ul className="contact-list text-start  mx-auto" style={{ width: '75%' }}>
 
-                                <li className="list-item"><i className="fa fa-phone text-danger fa-2x me-"><span className="contact-text phone ms-3"> 01928646555</span></i></li>
+                                <li className="list-item"><i className="fa fa-phone text-danger fa-2x me-"><span className="contact-text phone ms-3"> <a className='contact-text' href="tel:+8801928646555">01928646555</a></span></i></li>
 
-                                <li className="list-item"><i className="fa fa-envelope text-danger fa-2x me-"><a href="mailto:#" title="Send me an email" className='text-decoration-none'><span className="contact-text gmail ms-3">rjmahir.faisal@gmail.com</span></a></i></li>
+                                <li className="list-item"><i className="fa fa-envelope text-danger fa-2x me-"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=rjmahir.faisal@gmail.com" target="_blank" rel='noreferrer' className='text-decoration-none'><span className="contact-text gmail ms-3">rjmahir.faisal@gmail.com</span></a></i></li>
 
-                                <li className="list-item"><i className="fa fa-map-marker text-danger fa-2x me-"><span className="contact-text place ms-3">Rajshahi, Bangladesh</span></i></li>
+                                <li className="list-item"><i className="fa fa-map-marker text-danger fa-2x me-"><span className="contact-text place ms-3"><a className='contact-text' href="https://www.google.com/maps/search/Developers+Area/@24.4282908,88.6065141,21z/data=!4m7!2m6!3m5!1sDevelopers+Area!2s24.428376,+88.606569!4m2!1d88.6065689!2d24.428376" target="_blank" rel='noreferrer'>Rajshahi, Bangladesh</a></span></i></li>
                             </ul>
                             <hr />
                             <ul className="social-media-list" >
-                                <li><a href="https://github.com/mdmahirfaisal" target="_blank" rel="noopener noreferrer" className="  " ><i className="fab fa-github  "></i></a>
-                                </li>
-                                <li><a href="https://drive.google.com/file/d/1IWDXgsTltXLd81c202tLphDiYI-JgIIW/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="" ><i className="fab fa-google  "></i></a>
-                                </li>
-                                <li><a href="https://www.facebook.com/profile.php?id=100069936932811" target="_blank" rel="noopener noreferrer" className="" ><i className="fab fa-facebook  "></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/in/mahir-faisal/" target="_blank" rel="noopener noreferrer" className="" ><i className="fab fa-linkedin-in  "></i></a>
-                                </li>
+                                <a href={`https://github.com/mdmahirfaisal`} target="_blank" rel="noopener noreferrer" >  <li><i className="fab fa-github "></i>
+                                </li></a>
+                                <a href={`https://drive.google.com/file/d/1IWDXgsTltXLd81c202tLphDiYI-JgIIW/view?usp=sharing`} target="_blank" rel="noopener noreferrer"  ><li><i className="fab fa-google"></i></li></a>
+
+                                <a href={`https://www.facebook.com/profile.php?id=100069936932811`} target="_blank" rel="noopener noreferrer"><li><i className="fab fa-facebook contactIcon"></i></li></a>
+
+                                <a href={`https://www.linkedin.com/in/mahir-faisal/`} target="_blank" rel="noopener noreferrer"> <li><i className="fab fa-linkedin-in  contactIcon"></i></li></a>
+
                             </ul>
                             <hr />
                             <div className="copyright text-secondary">&copy; ALL OF THE RIGHTS RESERVED</div>
