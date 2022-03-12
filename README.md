@@ -1,5 +1,5 @@
 
-# WELCOME TO  SUPER CAR SHOP
+# WELCOME TO  MOBILE BAZAR
 
 <a href="https://mobilebazar.netlify.app/" target="_blank"><img src="https://i.ibb.co/8xszm9B/banner.png" width="100%" height="500px" alt="Mobile bazar"/></a>
 
