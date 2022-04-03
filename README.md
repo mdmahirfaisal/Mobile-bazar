@@ -1,7 +1,7 @@
 
 # WELCOME TO  MOBILE BAZAR
 
-<a href="https://mobilebazar.netlify.app/" target="_blank"><img src="https://i.ibb.co/8xszm9B/banner.png" width="100%" height="500px" alt="Mobile bazar"/></a>
+<a href="https://smart-mobile-bazar.web.app" target="_blank"><img src="https://i.ibb.co/8xszm9B/banner.png" width="100%" height="500px" alt="Mobile bazar"/></a>
 
 ## Description: My website was created following a simple mobile shop. After registering, users will be able to order mobile phones, cancel the order and see the status of the order. And admin will be able to manage orders and products.
 
